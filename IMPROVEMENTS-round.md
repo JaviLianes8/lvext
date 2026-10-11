@@ -67,8 +67,8 @@ x87 rejects as invalid operands (pseudo-infinity and unnormal).
 10. **Legacy functions kept.** `pack_ext`, `unpack_ext`, `pack_ext128` and
     `unpack_ext128` keep their signatures and now run on the exact codec, which fixes
     the three bugs above. The 16-byte helpers are documented as a zero-padded
-    container (the in-memory layout x86-64 compilers use for `long double`), not as a
-    LabVIEW format.
+    container (with little-endian order, the layout of a 16-byte `long double` on
+    x86-64 compilers such as GCC and Clang), not as a documented LabVIEW format.
 
 ## Out of scope
 

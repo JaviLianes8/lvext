@@ -58,15 +58,19 @@ assert unpack_ext(pack_ext(-2.5)) == -2.5
   `Rounding.NEAREST_EVEN` (the default), `FLOOR`, `CEILING` or `TOWARD_ZERO`.
   Underflow is gradual; overflow gives infinity or the largest finite value as IEEE
   754 prescribes for the mode.
-- **Special values.** Signed zero, infinities, quiet and signaling NaN with their
-  payloads (a float carries the top 51 payload bits; a signaling NaN comes out quiet,
-  as the FPU does). `Decimal("sNaN")` and `Decimal("NaN42")` map across both ways.
+- **Special values.** Signed zero, infinities, quiet and signaling NaN. A float NaN
+  keeps its sign and payload on the way in; on the way out a float keeps the top 51
+  payload bits, and a signaling NaN comes out quiet, as the FPU does. A Decimal NaN
+  maps its payload to the low 62 bits of the mantissa (a float payload `p` therefore
+  reads back as `p << 11`), and `Decimal("sNaN")` becomes `sNaN1`, because a
+  signaling NaN needs a nonzero fraction.
 - **Legacy encodings.** `ExtKind` also names the encodings the 80387 and later
   reject: unnormal, pseudo-infinity and pseudo-NaN. They have no value, so
   `to_fraction()` raises `InvalidEncodingError` and `to_float()` returns the x87
   indefinite NaN, as the FPU does. A pseudo-denormal is accepted with the value of
   exponent 1; `canonical()` rewrites it.
-- **Errors.** Every input error is an `LvextError`, which is a `ValueError`.
+- **Errors.** Bad input (wrong type, length, byte order, hex or range) raises
+  `LvextError`, which is a `ValueError`.
   `NotFiniteError` is raised when an infinity or NaN is asked for a Fraction.
 - **Limits.** `EXT80_MAX`, `EXT80_MIN_NORMAL`, `EXT80_MIN_SUBNORMAL`, `EXT80_EPSILON`
   and `EXT80_INDEFINITE` are `Ext80` constants.
@@ -78,7 +82,7 @@ $ lvext encode 1
 3fff8000000000000000
 $ lvext encode 1/3 --rounding toward-zero
 3ffdaaaaaaaaaaaaaaaa
-$ lvext encode -- -inf
+$ lvext encode -inf
 ffff8000000000000000
 $ lvext decode 3ffd8000000000000000
 kind: normal
@@ -111,8 +115,8 @@ LabVIEW's EXT type is extended precision, but its flattened form is 16 bytes and
 does not publish that layout in detail. lvext implements the x87 80-bit format only.
 It does not decode the 16-byte flattened EXT, and none of its output has been
 verified against LabVIEW. `pack_ext128` and `unpack_ext128` are a zero-padded
-16-byte container (with `"little"`, the layout x86-64 compilers use for a 16-byte
-`long double`), not a LabVIEW format.
+16-byte container (with `"little"`, the layout of a 16-byte `long double` on x86-64
+compilers such as GCC and Clang), not a documented LabVIEW format.
 
 ## Why
 

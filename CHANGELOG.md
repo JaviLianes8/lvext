@@ -37,11 +37,14 @@ All notable changes to this project are documented here. The format follows
 
 - Length and byte order errors raise `LvextError`, still a `ValueError`.
 - The documentation no longer states a LabVIEW flatten layout. The 16-byte helpers
-  are described as a zero-padded container, not a LabVIEW format.
+  are described as a zero-padded container, not a documented LabVIEW format.
+- Inputs of the wrong type (for example a string or a bool where a number is
+  expected) raise `LvextError` instead of being coerced.
 
 ## [0.1.0]
 
 - First release: `pack_ext`, `unpack_ext`, `pack_ext128` and `unpack_ext128` for
   the LabVIEW/x87 80-bit extended-precision float and its 128-bit padded storage
   form, with configurable byte order and full handling of signed zero,
-  subnormals, infinities and NaN.
+  subnormals, infinities and NaN. (The LabVIEW attribution in this entry was never
+  verified against LabVIEW output; see 0.2.0.)

@@ -52,6 +52,8 @@ def _function(name: str) -> _Fn:
         ]
         code = _PROLOGUE + _BODIES[name] + _EPILOGUE
         page = kernel32.VirtualAlloc(None, 4096, 0x3000, 0x04)  # commit, read-write
+        if not page:
+            raise OSError(ctypes.get_last_error())
         ctypes.memmove(page, code, len(code))
         old = wintypes.DWORD()
         if not kernel32.VirtualProtect(page, 4096, 0x20, ctypes.byref(old)):  # execute-read
