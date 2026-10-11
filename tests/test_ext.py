@@ -96,3 +96,24 @@ def test_unpack_rejects_wrong_length() -> None:
 def test_unpack128_rejects_wrong_length() -> None:
     with pytest.raises(ValueError):
         unpack_ext128(b"\x00" * 10)
+
+
+def test_unpack_rounds_once_in_the_subnormal_range() -> None:
+    # Fixed in 0.2.0: 0.1.0 rounded to 53 bits and then again to the subnormal width.
+    assert unpack_ext(bytes.fromhex("3bcc8000000000000001")) == 5e-324
+    assert unpack_ext(bytes.fromhex("bbcc8000000000000001")) == -5e-324
+
+
+def test_unpack_rejected_encodings_give_nan() -> None:
+    # Fixed in 0.2.0: pseudo-infinity read as infinity and unnormals read as numbers.
+    for text in ("7fff0000000000000000", "3fff7fffffffffffffff"):
+        assert math.isnan(unpack_ext(bytes.fromhex(text)))
+
+
+def test_unpack_keeps_the_nan_sign() -> None:
+    assert math.copysign(1.0, unpack_ext(bytes.fromhex("ffffc000000000000000"))) == -1.0
+
+
+def test_padded_rejects_unknown_byteorder() -> None:
+    with pytest.raises(ValueError, match="byteorder"):
+        pack_ext128(1.0, "middle")  # type: ignore[arg-type]

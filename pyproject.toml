@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "lvext"
-version = "0.1.0"
-description = "Pack and unpack LabVIEW/x87 80-bit extended-precision floats in pure Python"
+version = "0.2.0"
+description = "Exact pure-Python codec for x87 80-bit extended-precision floats"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Javier Lianes", email = "javier@lianes8studio.com" }]
-keywords = []
+keywords = ["x87", "extended-precision", "float80", "long-double", "labview"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -22,6 +22,9 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["ruff", "mypy", "pytest", "build", "twine"]
+
+[project.scripts]
+lvext = "lvext._cli:main"
 
 [project.urls]
 Homepage = "https://lianes8studio.com"
