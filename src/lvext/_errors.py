@@ -17,3 +17,10 @@ class InvalidEncodingError(LvextError):
 
 class NotFiniteError(LvextError):
     """An infinity or NaN was asked for an exact rational value it does not have."""
+
+
+def require(value: object, kinds: tuple[type, ...], what: str) -> None:
+    """Raise LvextError unless value is one of kinds; a bool never counts as a number."""
+    if isinstance(value, bool) or not isinstance(value, kinds):
+        names = " or ".join(kind.__name__ for kind in kinds)
+        raise LvextError(f"{what} must be {names}, got {type(value).__name__}")

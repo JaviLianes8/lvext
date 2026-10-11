@@ -1,5 +1,6 @@
 from decimal import Decimal
 from fractions import Fraction
+from typing import Any
 
 import pytest
 
@@ -129,3 +130,28 @@ def test_kind_predicates() -> None:
         assert kind.is_valid == (kind not in invalid)
         assert kind.is_finite == (kind in finite)
         assert kind.is_nan == (kind in {ExtKind.QUIET_NAN, ExtKind.SIGNALING_NAN})
+
+
+@pytest.mark.parametrize(
+    ("name", "args"),
+    [
+        ("from_float", ("1.5",)),
+        ("from_float", (True,)),
+        ("from_fraction", (True,)),
+        ("from_fraction", (1.5,)),
+        ("from_decimal", (1.5,)),
+        ("from_int", (1.0,)),
+        ("from_bytes", (10,)),
+        ("from_hex", (b"3fff8000000000000000",)),
+        ("__call__", (False, True, 0)),
+        ("__call__", (False, 0, 1.0)),
+    ],
+)
+def test_wrong_types_raise_lvext_error(name: str, args: tuple[object, ...]) -> None:
+    build: Any = Ext80 if name == "__call__" else getattr(Ext80, name)
+    with pytest.raises(LvextError, match="must be"):
+        build(*args)
+
+
+def test_hex_parsing_ignores_tabs_and_newlines() -> None:
+    assert Ext80.from_hex("3fff\t8000 0000\n0000 0000") == ONE
