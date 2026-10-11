@@ -23,6 +23,9 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["ruff", "mypy", "pytest", "build", "twine"]
 
+[project.scripts]
+lvext = "lvext._cli:main"
+
 [project.urls]
 Homepage = "https://lianes8studio.com"
 Repository = "https://github.com/JaviLianes8/lvext"
