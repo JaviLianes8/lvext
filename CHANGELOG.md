@@ -6,6 +6,39 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0]
+
+### Added
+
+- `Ext80`, an exact frozen value type for the x87 80-bit extended format: bytes, hex
+  and integer conversion in either byte order; `from_float`, `from_fraction`,
+  `from_decimal` and `from_number`; `to_fraction` and `to_decimal` with no rounding;
+  `narrow` and `to_float`; `kind` and `canonical`.
+- `Rounding` with the four x87 rounding modes, applied when rounding to 64 mantissa
+  bits and when narrowing to a float, with gradual underflow and IEEE overflow.
+- `ExtKind`, naming every encoding class, including pseudo-denormal, unnormal,
+  pseudo-infinity and pseudo-NaN.
+- `Narrowed`, the typed result of `narrow`: the float and whether it is exact.
+- `LvextError`, `InvalidEncodingError` and `NotFiniteError`.
+- `EXT80_MAX`, `EXT80_MIN_NORMAL`, `EXT80_MIN_SUBNORMAL`, `EXT80_EPSILON` and
+  `EXT80_INDEFINITE`.
+- The `lvext` command (`encode`, `decode`, `--version`), also runnable as
+  `python -m lvext`.
+
+### Fixed
+
+- `unpack_ext` rounded twice for results in the double subnormal range, so
+  `3bcc8000000000000001` gave `0.0` instead of `5e-324`. It now rounds once.
+- `unpack_ext` read pseudo-infinity as infinity and unnormals as numbers. They now
+  give the x87 indefinite NaN, matching the FPU.
+- `unpack_ext` dropped the sign and payload of a NaN; both are now kept.
+
+### Changed
+
+- Length and byte order errors raise `LvextError`, still a `ValueError`.
+- The documentation no longer states a LabVIEW flatten layout. The 16-byte helpers
+  are described as a zero-padded container, not a LabVIEW format.
+
 ## [0.1.0]
 
 - First release: `pack_ext`, `unpack_ext`, `pack_ext128` and `unpack_ext128` for
