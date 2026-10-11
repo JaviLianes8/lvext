@@ -34,11 +34,14 @@ zero.
 ## Why
 
 LabVIEW stores and flattens its Extended type as an 80-bit (or 128-bit padded)
-x87 float, and the standard library cannot touch it: `struct` has no 80-bit
-format, and `numpy.longdouble` is platform-dependent and is usually just a 64-bit
-double on Windows and MSVC, so it cannot read the extra bits. There was no
-portable package for this. `lvext` does the bit math in pure Python with no
-dependencies, so the same bytes decode identically on every platform.
+x87 float, which is a core LabVIEW primitive inside LabVIEW and has no OpenG
+counterpart for reading it from outside. The Python standard library cannot touch
+it: `struct` has no 80-bit format. `numpy.longdouble` does give you the bits where
+it is a real 80-bit type (Linux with GCC), but on Windows and MSVC it is silently
+just a 64-bit double, so it is not a portable decoder. `lvext` does the bit math in
+pure Python with no dependencies, so the same bytes decode identically on every
+platform; the value is specifically that portability, not that it is impossible
+elsewhere.
 
 ## License
 
