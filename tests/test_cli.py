@@ -110,3 +110,36 @@ def test_version(capsys: Capture) -> None:
         main(["--version"])
     assert exc.value.code == 0
     assert capsys.readouterr().out == f"lvext {__version__}\n"
+
+
+@pytest.mark.parametrize(
+    ("args", "expected"),
+    [
+        (("encode", "-1e-4000"), "8c179c3d73864f3805c0"),
+        (("encode", "-1/3"), "bffdaaaaaaaaaaaaaaab"),
+        (("encode", "-inf"), "ffff8000000000000000"),
+        (("encode", "-nan"), "ffffc000000000000000"),
+        (("encode", "--rounding", "floor", "-1/3"), "bffdaaaaaaaaaaaaaaab"),
+        (("encode", "-1/3", "--rounding", "ceiling"), "bffdaaaaaaaaaaaaaaaa"),
+        (("encode", "--", "-1/3"), "bffdaaaaaaaaaaaaaaab"),
+    ],
+)
+def test_negative_values_need_no_separator(
+    capsys: Capture, args: tuple[str, ...], expected: str
+) -> None:
+    assert _run(capsys, *args) == (0, expected + "\n", "")
+
+
+def test_decode_shows_the_sign_of_a_negative_nan(capsys: Capture) -> None:
+    assert "float: -nan\n" in _run(capsys, "decode", "ffffc000000000000000")[1]
+
+
+def test_decode_ignores_tabs_and_newlines(capsys: Capture) -> None:
+    out = _run(capsys, "decode", "3fff\t8000 0000\n0000 0000", "--json")[1]
+    assert json.loads(out)["exact"] == "1"
+
+
+def test_exponent_beyond_the_decimal_range_is_reported(capsys: Capture) -> None:
+    code, _, err = _run(capsys, "encode", "1e999999999999999999999")
+    assert code == 1
+    assert "beyond the decimal range" in err

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import re
 import sys
 from collections.abc import Sequence
 from decimal import Decimal, InvalidOperation
@@ -14,7 +16,9 @@ from . import __version__
 from ._codec import double_bits
 from ._errors import LvextError
 from ._rounding import Rounding
-from ._value import ByteOrder, Ext80, check_order
+from ._value import ByteOrder, Ext80, check_order, clean_hex
+
+_NEGATIVE = re.compile(r"-(?:[0-9.]|inf|nan|snan)", re.IGNORECASE)
 
 _EPILOG = """\
 examples:
@@ -23,13 +27,14 @@ examples:
   lvext encode 1/3 --rounding toward-zero
   lvext encode 1 --byteorder little      -> 0000000000000080ff3f
   lvext encode 1 --width 16              -> 0000000000003fff8000000000000000
-  lvext encode -- -inf                   (use -- before values such as -inf)
+  lvext encode -1/3                      -> bffdaaaaaaaaaaaaaaab
+  lvext encode -inf                      -> ffff8000000000000000
   lvext decode 3ffd8000000000000000      -> exact 0.25, float 0.25
   lvext decode "4000 c90f daa2 2168 c235" --json
 
 VALUE is a decimal (2.5, 1e-4000), a fraction (1/3), inf, nan, snan or -0.
 HEX is 20 hex digits, or 32 for a 16-byte container whose 6 most significant
-bytes are padding; spaces, underscores and a 0x prefix are ignored.
+bytes are padding; whitespace, underscores and a 0x prefix are ignored.
 """
 
 
@@ -46,13 +51,11 @@ def _parse_value(text: str) -> Decimal | Fraction:
     try:
         return Fraction(cleaned) if "/" in cleaned else Decimal(cleaned)
     except (InvalidOperation, ValueError, ZeroDivisionError):
-        raise LvextError(f"not a number: {text!r}") from None
+        raise LvextError(f"not a number, or beyond the decimal range: {text!r}") from None
 
 
 def _parse_hex(text: str, byteorder: ByteOrder) -> Ext80:
-    cleaned = text.strip().replace(" ", "").replace("_", "")
-    if cleaned[:2].lower() == "0x":
-        cleaned = cleaned[2:]
+    cleaned = clean_hex(text)
     if len(cleaned) == 32:
         try:
             bits = int.from_bytes(bytes.fromhex(cleaned), byteorder)
@@ -81,7 +84,7 @@ def _decode(args: argparse.Namespace) -> str:
         "exponent": f"{value.exponent:#06x}",
         "mantissa": f"{value.mantissa:#018x}",
         "exact": exact,
-        "float": repr(narrowed.value),
+        "float": _float_text(narrowed.value),
         "float_hex": f"{double_bits(narrowed.value):016x}",
         "float_exact": narrowed.exact,
     }
@@ -89,6 +92,12 @@ def _decode(args: argparse.Namespace) -> str:
         return json.dumps(report)
     lines = [f"{key}: {_text(item)}" for key, item in report.items()]
     return "\n".join(lines)
+
+
+def _float_text(value: float) -> str:
+    if math.isnan(value):
+        return "-nan" if math.copysign(1.0, value) < 0 else "nan"
+    return repr(value)
 
 
 def _text(item: object) -> str:
@@ -132,9 +141,20 @@ def _build_parser() -> _Parser:
     return parser
 
 
+def _protect_negative_values(argv: list[str]) -> list[str]:
+    """Move a negative VALUE such as -1e-9, -1/3 or -inf behind ``--`` for argparse."""
+    if "encode" not in argv or "--" in argv:
+        return argv
+    start = argv.index("encode") + 1
+    negatives = [arg for arg in argv[start:] if _NEGATIVE.match(arg)]
+    others = [arg for arg in argv[start:] if not _NEGATIVE.match(arg)]
+    return argv[:start] + others + (["--", *negatives] if negatives else [])
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the command line interface and return the exit status."""
-    args = _build_parser().parse_args(argv)
+    raw = list(sys.argv[1:] if argv is None else argv)
+    args = _build_parser().parse_args(_protect_negative_values(raw))
     try:
         output = args.run(args)
     except LvextError as exc:
