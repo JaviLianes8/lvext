@@ -1,5 +1,7 @@
 # lvext
 
+[![Lianes8 Certified](https://lianes8studio.com/certified/lianes8-certified-badge.svg)](https://lianes8studio.com/certified)
+
 Exact pure-Python codec for x87 80-bit extended-precision floats and LabVIEW's
 flattened EXT.
 

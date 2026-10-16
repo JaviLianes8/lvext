@@ -10,9 +10,36 @@ Progress:
 - [x] Docs: README, GUIDE, CHANGELOG (items 11, 12)
 - [x] Packaging, e2e and upgrade from PyPI 0.2.0 (items 8, 10, 13, 14), author run
 - [x] Five QA lenses report PASS (item 19)
-- [ ] Independent reviewer reports PASS (item 16)
-- [ ] Gates (item 15), final run
-- [ ] PR and trace guard CLEAN (item 17); merge and publish left to the maintainer
+- [x] Independent reviewer reports PASS (item 16)
+- [x] Gates (item 15), final run
+- [x] PR #3 and trace guard CLEAN (item 17); merge and publish left to the maintainer
+
+## Scorecard
+
+Independent review (item 16), round 2 at 90c742f; the commits after it touch only this
+report and the README badge.
+
+| # | Item | Result |
+| --- | --- | --- |
+| 1 | Public API reviewed for stability | PASS: the 17 names of 0.2.0 kept, 18 exported; every change confirmed on a real PyPI 0.2.0 to 1.0.0 upgrade |
+| 2 | `__all__` exact, no private imports in docs | PASS |
+| 3 | Docstrings with runnable examples, doctests | PASS: 23 doctests; README and GUIDE Python and console examples run as tests |
+| 4 | Typed end to end | PASS: `mypy --strict src tests` clean, `py.typed` shipped, no `Any` in `src` |
+| 5 | Typed, documented, bounded errors | PASS: hostile inputs raise only `LvextError` subclasses; messages at most 108 characters for 1 MB inputs |
+| 6 | Contract tests of every public name | PASS |
+| 7 | Real ground truth | PASS: 401 LabVIEW 2026 datalog records with version, date and SHA-256; x87 hardware oracle |
+| 8 | Real e2e from the wheel | PASS: console script by subprocess, sabotage caught, upgrade from PyPI 0.2.0 |
+| 9 | Seeded fuzz, no crash, hang or blowup | PASS |
+| 10 | Supported Pythons | PASS: CPython 3.10.19, 3.11.5, 3.12.12, 3.13.2, 3.14.2 and 3.14.2 free-threaded, 860 passed each |
+| 11 | README and `twine check` | PASS |
+| 12 | Dated CHANGELOG 1.0.0 section | PASS |
+| 13 | pyproject 1.0.0, Production/Stable | PASS |
+| 14 | sdist and wheel contents | PASS |
+| 15 | Gates each exit 0 | PASS: each alone on a fresh clone |
+| 16 | Independent reviewer | PASS: round 1 FAIL at fb04a42, round 2 PASS at 90c742f |
+| 17 | PR and trace guard | PR #3, trace guard CLEAN; merge and publish left to the maintainer |
+| 18 | Contracts bite (mutations) | PASS: author 40, blind lens e 125, reviewer 40; every non-equivalent survivor killed by a contract |
+| 19 | Five independent QA lenses | PASS: a round 2, b round 2, c round 3, d round 2, e round 3 |
 
 ## Baseline on 0.2.0 (before any change)
 
@@ -191,6 +218,7 @@ Message or traceback only: the list of mode names in the rounding error and `fro
 | Round | Head | Verdict | Findings and outcome |
 | --- | --- | --- | --- |
 | 1 | fb04a42 | FAIL (items 6, 16, 18) | every gate, build, six-interpreter wheel run and the PyPI upgrade passed; its own 40 mutations: 38 killed, 2 survived (an infinity narrowed with `exact=False`; the 40-character quote boundary, message only), both now pinned in `tests/test_contract_api.py`; stale paragraph in `IMPROVEMENTS-round.md` and an outdated module count in this report corrected; in a670efc |
+| 2 | 90c742f | PASS | both survivors killed by the full suite on fresh copies; gates each exit 0 alone on a fresh clone; no source change since fb04a42 |
 
 Kept as they are: the subject of b9340b5 contains the identifier `RoundingMode` in its
 original case (rewriting it would need a force-push of a published branch; the merge is
