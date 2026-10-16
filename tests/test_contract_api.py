@@ -130,4 +130,4 @@ def test_public_classes_name_the_package_as_their_module() -> None:
             assert obj.__module__ == "lvext", name
     value = Ext80.from_float(-2.5)
     assert pickle.loads(pickle.dumps(value)) == value
-    assert b"lvext\n" in pickle.dumps(value, protocol=0) or b"lvext" in pickle.dumps(value)
+    assert b"_value" not in pickle.dumps(value, protocol=0)
