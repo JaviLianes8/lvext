@@ -9,7 +9,8 @@ Progress:
 - [x] Contract, fuzz and author mutation round (items 6, 9, 18)
 - [x] Docs: README, GUIDE, CHANGELOG (items 11, 12)
 - [x] Packaging, e2e and upgrade from PyPI 0.2.0 (items 8, 10, 13, 14), author run
-- [ ] Independent reviewer and five QA lenses report PASS (items 16, 19)
+- [x] Five QA lenses report PASS (item 19)
+- [ ] Independent reviewer reports PASS (item 16)
 - [ ] Gates (item 15), final run
 - [ ] PR and trace guard CLEAN (item 17); merge and publish left to the maintainer
 
@@ -150,3 +151,32 @@ by contracts in 74a0328, each confirmed to fail on its mutant.
   `OverflowError` then an encoding; `from_fraction(0, "up")` and `from_number(1.5, "up")`
   accepted then refused; `to_flattened` absent then present; a 100-character byte order
   quoted in full then cut; `decode` gains its `flattened` line.
+
+## Independent QA lenses (item 19)
+
+Each lens was a fresh reviewer that read the certification rules and CERT-1.0.md first,
+ran the code rather than only reading it, reported only to the author and posted nothing
+to GitHub. Findings were fixed, pinned by tests where they concern behaviour, and
+confirmed by the same reviewer; later rounds were bounded to confirming earlier findings
+plus one sweep of the code changed since.
+
+| Lens | Round | Head | Verdict | Findings and outcome |
+| --- | --- | --- | --- | --- |
+| a. API and docs | 1 | 1f67dc4 | FAIL | README precision sentence, GUIDE `from_float` row and usage-error wording, public classes reporting private modules, `canonical()` on subclasses unlisted, `RoundingMode` not exported; fixed in b9340b5 and bc9da0f |
+| a | 2 | bc9da0f | PASS | all six confirmed; external `mypy --strict` client clean; pickles load across 0.2.0 and 1.0.0 both ways |
+| b. Correctness and ground truth | 1 | ded43a1 | PASS (3 doc points) | about 437,000 comparisons: the 401 records with its own decoders and raw datalog parsing, 172 fresh LabVIEW 2026 captures (61 re-captures identical), about 434,000 x87 hardware cases through its own ctypes code; doc points (inferred subnormal halving, unnormal wording, `floatExt` only on Windows x86/x64) fixed in a63c20f |
+| b | 2 | 86a6c2c | PASS | wording confirmed against its captures |
+| c. Adversarial and robustness | 1 | ffa8192 | FAIL | `unpack_ext128` without a type check, quadratic time on long Decimals, closed stdout traceback, released memoryviews, int subclasses lying in comparisons, unbounded usage echo; fixed in 1195f25 |
+| c | 2 | 1195f25 | FAIL | fixes confirmed (3 million digits in 0.031 s; 760 sticky-digit comparisons against exact rounding, 0 mismatches); `--help`/`--version` into a closed pipe still exited 120; fixed in 8e6cfb0 |
+| c | 3 | 8e6cfb0 | PASS | 451,661 + 120,484 + 30,228 fuzz cases over the rounds, only `LvextError` escaping, exit codes 0 and 1 only |
+| d. Packaging and real e2e | 1 | 8e6cfb0 | PASS (2 doc points) | wheel on CPython 3.10.19, 3.11.5, 3.12.12, 3.13.2, 3.14.2 and 3.14.2 free-threaded, 833 passed each from the sdist with `src` removed; three sabotages of the installed wheel caught; upgrade from PyPI 0.2.0 matches every listed change; usage-error length wording and the GUIDE upgrade list fixed in 2868b47 |
+| d | 2 | 2868b47 | PASS | docs only; rebuilt wheel code byte-identical |
+| e. Contract strength (blind) | 1 | f2adb31 | FAIL | 105 mutations, 85 killed, 5 equivalent, 15 missing contracts, plus a real defect (a rounding object whose `repr` fails escaped as its own exception); contracts in `tests/test_contract_blind.py` and the fix in fd9249b |
+| e | 2 | fd9249b | FAIL | the 15 now killed; sweep of 20 on the changed code: 12 killed, 3 equivalent, 2 message or traceback only, 4 missing (exact mode names, `str()` of an object, interrupts swallowed); contracts in 5c6b32d |
+| e | 3 | 5c6b32d | PASS | the 4 killed; 125 mutations in all, every non-equivalent survivor killed |
+
+Equivalent mutants recorded by lens e: a 20-digit NaN payload cap (a second check refuses
+it), the index of `encode` in the negative-value rewrite, two floor-log2 and scale
+boundary comparisons (exact powers of two are fixed by the carry), `exact <= 0` after zero
+returned, the 128-bit int shortcut in error quoting, and the `Rounding` member shortcut.
+Message or traceback only: the list of mode names in the rounding error and `from None`.
