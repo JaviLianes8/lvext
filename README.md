@@ -1,6 +1,18 @@
 # lvext
 
-Exact pure-Python codec for x87 80-bit extended-precision floats.
+[![Lianes8 Certified](https://lianes8studio.com/certified/lianes8-certified-badge.svg)](https://lianes8studio.com/certified)
+
+Exact pure-Python codec for x87 80-bit extended-precision floats and LabVIEW's
+flattened EXT.
+
+An x87 extended value is 10 bytes: a C `long double` on x86 Linux, and the layout of
+LabVIEW's `floatExt`, the C type an EXT has when LabVIEW passes it to a library call on
+Windows. When LabVIEW flattens an EXT (for example into a datalog file) it writes 16
+bytes in the IEEE 754 binary128 layout instead. Python's `float` has 53 bits of
+precision; an x87 value has 64, and so has every EXT LabVIEW flattens. lvext reads
+and writes both layouts bit for bit, converts them to and from exact `Fraction` and
+`Decimal` values, and rounds once, in any of the four IEEE modes, wherever precision
+has to go.
 
 ## Install
 
@@ -8,7 +20,9 @@ Exact pure-Python codec for x87 80-bit extended-precision floats.
 pip install lvext
 ```
 
-## Usage
+Python 3.10 or newer, no dependencies.
+
+## Quick start
 
 ```python
 from decimal import Decimal
@@ -16,7 +30,7 @@ from fractions import Fraction
 
 from lvext import Ext80, ExtKind, Rounding
 
-# Every float fits exactly, and the bytes come out big-endian unless you ask.
+# Every float fits exactly. Bytes come out big-endian unless you ask.
 one = Ext80.from_float(1.0)
 assert one.hex() == "3fff8000000000000000"
 assert one.to_bytes("little") == bytes.fromhex("0000000000000080ff3f")
@@ -29,13 +43,18 @@ assert str(value.to_decimal()).startswith("3.14159265358979323851280895940618620
 # Narrow to a float; the result says whether anything was lost.
 assert value.narrow() == (3.141592653589793, False)
 
-# Build from exact numbers, rounding once, in any of the four x87 modes.
+# Build from exact numbers, rounding once, in any of the four modes.
 third = Ext80.from_fraction(Fraction(1, 3), Rounding.TOWARD_ZERO)
 assert third.hex() == "3ffdaaaaaaaaaaaaaaaa"
 assert Ext80.from_decimal(Decimal("0.1")).hex() == "3ffbcccccccccccccccd"
+
+# LabVIEW's flattened EXT: 16 bytes, big-endian.
+flat = Ext80.from_float(0.1).to_flattened()
+assert flat.hex() == "3ffb999999999999a000000000000000"
+assert Ext80.from_flattened(flat).to_float() == 0.1
 ```
 
-The float-in, float-out helpers from the first release are still there:
+The float-in, float-out helpers of the first release are still there:
 
 ```python
 from lvext import pack_ext, unpack_ext
@@ -44,46 +63,13 @@ assert pack_ext(-2.5) == bytes.fromhex("c000a000000000000000")
 assert unpack_ext(pack_ext(-2.5)) == -2.5
 ```
 
-## What it handles
-
-- **The format.** 1 sign bit, a 15-bit exponent biased by 16383, an explicit integer
-  bit and a 63-bit fraction (Intel SDM Vol. 1, 4.2 and 8.2.2). `Ext80` holds the
-  three fields bit for bit, so all 2**80 encodings round-trip through bytes, hex and
-  integers in either byte order. x87 memory order is little-endian.
-- **Exact values.** `to_fraction()` and `to_decimal()` never round; the Decimal holds
-  every digit (thousands of them near the ends of the range) whatever the context
-  precision.
-- **Rounding.** `from_fraction`, `from_decimal` and `from_number` round once to 64
-  mantissa bits, and `narrow`/`to_float` round once to a double, with
-  `Rounding.NEAREST_EVEN` (the default), `FLOOR`, `CEILING` or `TOWARD_ZERO`.
-  Underflow is gradual; overflow gives infinity or the largest finite value as IEEE
-  754 prescribes for the mode.
-- **Special values.** Signed zero, infinities, quiet and signaling NaN. A float NaN
-  keeps its sign and payload on the way in; on the way out a float keeps the top 51
-  payload bits, and a signaling NaN comes out quiet, as the FPU does. A Decimal NaN
-  maps its payload to the low 62 bits of the mantissa (a float payload `p` therefore
-  reads back as `p << 11`), and `Decimal("sNaN")` becomes `sNaN1`, because a
-  signaling NaN needs a nonzero fraction.
-- **Legacy encodings.** `ExtKind` also names the encodings the 80387 and later
-  reject: unnormal, pseudo-infinity and pseudo-NaN. They have no value, so
-  `to_fraction()` raises `InvalidEncodingError` and `to_float()` returns the x87
-  indefinite NaN, as the FPU does. A pseudo-denormal is accepted with the value of
-  exponent 1; `canonical()` rewrites it.
-- **Errors.** Bad input (wrong type, length, byte order, hex or range) raises
-  `LvextError`, which is a `ValueError`.
-  `NotFiniteError` is raised when an infinity or NaN is asked for a Fraction.
-- **Limits.** `EXT80_MAX`, `EXT80_MIN_NORMAL`, `EXT80_MIN_SUBNORMAL`, `EXT80_EPSILON`
-  and `EXT80_INDEFINITE` are `Ext80` constants.
-
 ## Command line
 
-```
-$ lvext encode 1
-3fff8000000000000000
-$ lvext encode 1/3 --rounding toward-zero
-3ffdaaaaaaaaaaaaaaaa
-$ lvext encode -inf
-ffff8000000000000000
+```console
+$ lvext encode 1/3
+3ffdaaaaaaaaaaaaaaab
+$ lvext encode 0.1 --flattened
+3ffb999999999999999a000000000000
 $ lvext decode 3ffd8000000000000000
 kind: normal
 sign: +
@@ -93,43 +79,46 @@ exact: 0.25
 float: 0.25
 float_hex: 3fd0000000000000
 float_exact: yes
+flattened: 3ffd0000000000000000000000000000
 ```
 
-`encode` takes a decimal, a fraction such as `1/3`, `inf`, `nan`, `snan` or `-0`,
-with `--byteorder`, `--rounding` and `--width 16` (zero-padded container).
-`decode` takes 20 hex digits, or 32 for a 16-byte container, and `--json` prints one
-JSON object. Errors go to stderr with exit status 1. `lvext --help` lists examples.
+`lvext --help` lists every option; the [guide](https://github.com/JaviLianes8/lvext/blob/main/GUIDE.md#command-line)
+describes them.
 
 ## How it is verified
 
-Each golden vector in the contract tests is an exact rational written with
-`fractions.Fraction`. On Windows x86-64 the test suite also runs the FPU's own load
-and store instructions (`FLD`, `FSTP`, `FILD`, `FDIVP`) through a small test-only
-`ctypes` helper and compares lvext with the hardware bit for bit, under all four
-rounding modes, over the edge cases and thousands of random encodings. That check
-found and now guards three decode bugs in 0.1.0 (see the changelog).
-
-## LabVIEW
-
-LabVIEW's EXT type is extended precision, but its flattened form is 16 bytes and NI
-does not publish that layout in detail. lvext implements the x87 80-bit format only.
-It does not decode the 16-byte flattened EXT, and none of its output has been
-verified against LabVIEW. `pack_ext128` and `unpack_ext128` are a zero-padded
-16-byte container (with `"little"`, the layout of a 16-byte `long double` on x86-64
-compilers such as GCC and Clang), not a documented LabVIEW format.
+- **The x87 FPU itself.** On Windows x86-64 the tests run the processor's own load and
+  store instructions through a small test-only `ctypes` helper and compare lvext with
+  the hardware bit for bit, in all four rounding modes, over edge cases and thousands
+  of random encodings.
+- **LabVIEW 2026.** 401 pairs of values that LabVIEW 2026 wrote itself, through three
+  shipped VIs with EXT terminals: every double input flattens exactly as LabVIEW wrote
+  it, and 230 products LabVIEW computed in EXT equal lvext's single rounding of the
+  exact product (and differ from each of the other three modes). The guide lists the
+  two corner cases where LabVIEW's bytes and lvext's differ, and why.
+- **Exact arithmetic.** Golden vectors are exact rationals, rounding is checked against
+  an exact oracle, and seeded fuzzing covers every reader and the command line.
 
 ## Why
 
-The Python standard library cannot read this format: `struct` has no 80-bit code.
-`numpy.longdouble` exposes it only where the platform's `long double` is the x87
-type (for example Linux with GCC); on Windows with MSVC it is a 64-bit double. lvext
-does the bit math in pure Python with no dependencies, so the same bytes decode the
-same way on every platform, and exact conversions to Fraction and Decimal come with
-it.
+- Python's `struct` has no 80-bit or 128-bit float format.
+- `numpy.longdouble` is the x87 type only where the platform's C `long double` is (for
+  example Linux on x86 with GCC); on Windows it is an 8-byte double.
+- `numpy-quaddtype` adds a binary128 dtype to NumPy as a compiled extension; it needs
+  NumPy and does not read the 80-bit layout.
+
+lvext does the bit arithmetic in pure Python, so the same bytes decode the same way on
+every platform, and it gives the exact value, not just the nearest float.
+
+## Documentation
+
+- [Guide](https://github.com/JaviLianes8/lvext/blob/main/GUIDE.md): the formats, every
+  public name, rounding, special values, LabVIEW details, errors and upgrading from 0.2.
+- [Changelog](https://github.com/JaviLianes8/lvext/blob/main/CHANGELOG.md)
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/JaviLianes8/lvext/blob/main/LICENSE).
 
 ## Links
 

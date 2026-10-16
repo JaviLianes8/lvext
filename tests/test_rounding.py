@@ -90,7 +90,7 @@ def test_zero_fraction_is_positive_zero() -> None:
 
 
 def test_rounding_accepts_its_string_value() -> None:
-    assert Ext80.from_fraction(Fraction(1, 3), "toward-zero").hex() == "3ffdaaaaaaaaaaaaaaaa"  # type: ignore[arg-type]
+    assert Ext80.from_fraction(Fraction(1, 3), "toward-zero").hex() == "3ffdaaaaaaaaaaaaaaaa"
 
 
 def test_unknown_rounding_is_an_lvext_error() -> None:

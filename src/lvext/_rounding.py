@@ -4,12 +4,22 @@ from __future__ import annotations
 
 from enum import Enum
 from fractions import Fraction
+from typing import Literal
 
 from ._errors import LvextError
+from ._text import short
 
 
 class Rounding(str, Enum):
-    """The four x87 rounding control modes, also the four IEEE 754 binary modes."""
+    """The four x87 rounding control modes, also the four IEEE 754 binary modes.
+
+    Wherever a mode is taken, its string value works too.
+
+    >>> Ext80.from_fraction(Fraction(-1, 3), Rounding.FLOOR).hex()
+    'bffdaaaaaaaaaaaaaaab'
+    >>> Rounding("toward-zero") is Rounding.TOWARD_ZERO
+    True
+    """
 
     NEAREST_EVEN = "nearest-even"
     """Round to nearest, ties to even. The x87 and IEEE 754 default."""
@@ -19,6 +29,11 @@ class Rounding(str, Enum):
     """Round toward plus infinity."""
     TOWARD_ZERO = "toward-zero"
     """Truncate toward zero."""
+
+
+RoundingName = Literal["nearest-even", "floor", "ceiling", "toward-zero"]
+RoundingMode = Rounding | RoundingName
+"""A Rounding member or its string value; both are accepted wherever a mode is."""
 
 
 def _round_quotient(num: int, den: int, negative: bool, mode: Rounding) -> int:
@@ -77,10 +92,12 @@ def overflow_saturates(negative: bool, mode: Rounding) -> bool:
     return not negative
 
 
-def as_rounding(value: Rounding | str) -> Rounding:
+def as_rounding(value: object) -> Rounding:
     """Return the Rounding for a member or its string value, else raise LvextError."""
+    if isinstance(value, Rounding):
+        return value
     try:
         return Rounding(value)
-    except ValueError:
+    except Exception:  # unknown name, or a hostile object failing inside the lookup
         names = ", ".join(mode.value for mode in Rounding)
-        raise LvextError(f"rounding must be one of {names}, got {value!r}") from None
+        raise LvextError(f"rounding must be one of {names}, got {short(value)}") from None

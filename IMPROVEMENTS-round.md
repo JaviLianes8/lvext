@@ -16,10 +16,11 @@ bit and a 63-bit fraction. Every vector in the test suite is checked two ways:
   load and store instructions (`FLD`, `FSTP`, `FILD`, `FDIVP`) under each rounding
   control setting.
 
-LabVIEW's flattened EXT is 16 bytes and NI does not publish its layout. No real
-LabVIEW flatten of an EXT value could be captured for this project, so lvext makes no
-claim about that layout. The previous README said LabVIEW flattens EXT as 10
-big-endian bytes; that sentence is removed.
+LabVIEW's flattened EXT is 16 bytes. At the time of this round no real LabVIEW
+flatten of an EXT value had been captured, so this round made no claim about that
+layout and removed the old README sentence that said LabVIEW flattens EXT as 10
+big-endian bytes. (Superseded in 1.0.0: datalog records written by LabVIEW 2026 show
+the IEEE binary128 layout, and lvext now reads and writes it; see GUIDE.md.)
 
 ## Bugs found against the hardware (all fixed)
 
@@ -72,5 +73,6 @@ x87 rejects as invalid operands (pseudo-infinity and unnormal).
 
 ## Out of scope
 
-- Decoding LabVIEW's 16-byte flattened EXT: unverifiable without a real capture.
+- Decoding LabVIEW's 16-byte flattened EXT: unverifiable without a real capture at the
+  time (added in 1.0.0 after LabVIEW 2026 captures).
 - Arithmetic on Ext80 values: this is a codec, not a soft-float library.

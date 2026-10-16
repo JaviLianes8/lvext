@@ -4,8 +4,10 @@ Thanks for taking the time. This project keeps a small, predictable shape.
 
 ## Setup
 
+From a clone of the repository (the source distribution does not ship the dev files):
+
 ```
-pip install -r requirements-dev.txt
+pip install -e . -r requirements-dev.txt
 ```
 
 ## Before you open a pull request

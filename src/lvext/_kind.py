@@ -11,7 +11,13 @@ FRACTION_MASK = INT_BIT - 1
 
 
 class ExtKind(str, Enum):
-    """What an 80-bit extended encoding represents."""
+    """What an 80-bit extended encoding represents.
+
+    >>> Ext80.from_hex("3fff0000000000000000").kind
+    <ExtKind.UNNORMAL: 'unnormal'>
+    >>> ExtKind.UNNORMAL.is_valid, ExtKind.SUBNORMAL.is_finite, ExtKind.QUIET_NAN.is_nan
+    (False, True, True)
+    """
 
     ZERO = "zero"
     SUBNORMAL = "subnormal"

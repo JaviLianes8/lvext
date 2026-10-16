@@ -9,6 +9,10 @@ from ._errors import LvextError
 from ._kind import INT_BIT, QUIET_BIT, ExtKind
 
 _MAX_PAYLOAD_DIGITS = 19  # 2**62 - 1 has 19 decimal digits
+# Every point where rounding to 64 bits changes (a 65-bit dyadic rational inside the
+# range) has fewer than 11,600 significant decimal digits, so digits beyond this many
+# only matter as "zero or not" and are folded into one sticky digit.
+_KEEP_DIGITS = 12_000
 
 
 def bounded(value: Decimal) -> Fraction:
@@ -22,6 +26,14 @@ def bounded(value: Decimal) -> Fraction:
         return Fraction(sign * 2**16400)
     if value.adjusted() < -4960:
         return Fraction(sign, 2**16500)
+    negative, digits, exponent = value.as_tuple()
+    if len(digits) > _KEEP_DIGITS:
+        assert isinstance(exponent, int)
+        dropped = len(digits) - _KEEP_DIGITS
+        kept = digits[:_KEEP_DIGITS]
+        if any(digits[_KEEP_DIGITS:]):
+            kept, dropped = (*kept, 1), dropped - 1
+        value = Decimal((negative, kept, exponent + dropped))
     return Fraction(value)
 
 
