@@ -7,7 +7,7 @@ An x87 extended value is 10 bytes: a C `long double` on x86 Linux, and the layou
 LabVIEW's `floatExt`, the C type an EXT has when LabVIEW passes it to a library call on
 Windows. When LabVIEW flattens an EXT (for example into a datalog file) it writes 16
 bytes in the IEEE 754 binary128 layout instead. Python's `float` has 53 bits of
-precision; both formats have 64. lvext reads and writes both layouts bit for bit,
+precision; an x87 value has 64, and so has every EXT LabVIEW flattens. lvext reads and writes both layouts bit for bit,
 converts them to and from exact `Fraction` and `Decimal` values, and rounds once, in
 any of the four IEEE modes, wherever precision has to go.
 

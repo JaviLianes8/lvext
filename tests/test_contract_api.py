@@ -117,3 +117,17 @@ def test_cli_padded_container_keeps_the_sign(capsys: pytest.CaptureFixture[str])
 def test_cli_negative_value_may_start_with_a_point(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["encode", "-.5e1"]) == 0
     assert capsys.readouterr().out == "c001a000000000000000\n"
+
+
+def test_public_classes_name_the_package_as_their_module() -> None:
+    import pickle
+
+    import lvext
+
+    for name in lvext.__all__:
+        obj = getattr(lvext, name)
+        if isinstance(obj, type):
+            assert obj.__module__ == "lvext", name
+    value = Ext80.from_float(-2.5)
+    assert pickle.loads(pickle.dumps(value)) == value
+    assert b"lvext\n" in pickle.dumps(value, protocol=0) or b"lvext" in pickle.dumps(value)

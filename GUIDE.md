@@ -52,12 +52,13 @@ zero, subnormal, pseudo-denormal and normal, and `kind.is_nan` for the two NaNs.
 | `Ext80.from_bytes` / `to_bytes` | exactly 10 bytes, `byteorder="big"` or `"little"` |
 | `Ext80.from_hex` / `hex` | 20 hex digits; spaces, underscores and `0x` are ignored on input |
 | `Ext80.from_flattened` / `to_flattened` | LabVIEW's 16-byte flattened EXT |
-| `Ext80.from_float` | a float, exactly; an int at its exact value |
+| `Ext80.from_float` | a float, exactly; an int at its exact value, rounded to nearest-even beyond 64 significant bits |
 | `Ext80.from_fraction`, `from_decimal`, `from_number` | exact numbers, rounded once |
 | `to_fraction`, `to_decimal` | the exact value, never rounded |
 | `narrow`, `to_float` | the nearest float, rounded once; `narrow` also says whether it is exact |
 | `kind`, `canonical` | the encoding class; the canonical form of a pseudo-denormal |
-| `ExtKind`, `Rounding`, `Narrowed`, `ByteOrder` | the enums, the result of `narrow`, the byte order type |
+| `ExtKind`, `Rounding`, `Narrowed` | the enums and the result of `narrow` |
+| `ByteOrder`, `RoundingMode` | type aliases: `"big"` or `"little"`; a `Rounding` member or its name (documented here, as aliases carry no docstring) |
 | `EXT80_MAX`, `EXT80_MIN_NORMAL`, `EXT80_MIN_SUBNORMAL`, `EXT80_EPSILON`, `EXT80_INDEFINITE` | named limits, as `Ext80` |
 | `pack_ext`, `unpack_ext` | float to 10 bytes and back |
 | `pack_ext128`, `unpack_ext128` | float to a zero-padded 16-byte container and back (not the flattened form) |
@@ -174,8 +175,9 @@ $ lvext decode 3fff0000000000000000000000000000 --flattened --json
 ```
 
 Output goes to standard output with exit status 0. Bad input prints one
-`lvext: error: ...` line to standard error and exits 1; so do usage errors, after the
-usage line.
+`lvext: error: ...` line to standard error and exits 1. A usage error (an unknown or
+conflicting option) also exits 1, after the usage line, with argparse's own message
+(`lvext encode: error: ...`), which quotes the option as given.
 
 ## Errors
 
@@ -186,7 +188,7 @@ usage line.
 | `NotFiniteError` | `to_fraction` on an infinity or NaN |
 
 All three are `ValueError` subclasses, and the last two are `LvextError` subclasses.
-Messages quote at most 40 characters of the offending value.
+Their messages quote at most 40 characters of the offending value.
 
 ## Upgrading from 0.2.0
 
@@ -200,4 +202,6 @@ Messages quote at most 40 characters of the offending value.
 - An unknown rounding name raises `LvextError` for every value; 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
 - Error messages quote at most 40 characters of the input.
-- The `rounding` arguments are typed to accept the mode names as well as the members.
+- The `rounding` arguments are typed `RoundingMode` (exported): a member or its name.
+- Public classes report `lvext` as their module, for example `lvext.InvalidEncodingError`
+  in a traceback.

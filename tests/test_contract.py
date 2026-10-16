@@ -41,6 +41,7 @@ PUBLIC_API: list[str] = [
     "Narrowed",
     "NotFiniteError",
     "Rounding",
+    "RoundingMode",
     "pack_ext",
     "pack_ext128",
     "unpack_ext",

@@ -22,7 +22,7 @@ class InvalidEncodingError(LvextError):
 
     >>> Ext80.from_hex("7fff0000000000000000").to_fraction()
     Traceback (most recent call last):
-    lvext._errors.InvalidEncodingError: pseudo-infinity encoding has no value
+    lvext.InvalidEncodingError: pseudo-infinity encoding has no value
     """
 
 
@@ -31,7 +31,7 @@ class NotFiniteError(LvextError):
 
     >>> Ext80.from_float(float("inf")).to_fraction()
     Traceback (most recent call last):
-    lvext._errors.NotFiniteError: infinity has no exact rational value
+    lvext.NotFiniteError: infinity has no exact rational value
     """
 
 

@@ -37,7 +37,10 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
 - The `rounding` parameters are typed to accept the mode names (`"floor"` and so on)
   as well as the `Rounding` members, as they always did at run time.
 - `Ext80` keeps its bit-level methods in a private base class; its fields, methods and
-  equality are unchanged.
+  equality are unchanged, except that `canonical()` on a subclass returns that subclass.
+- `RoundingMode` is exported: the type of every `rounding` parameter.
+- Public classes report `lvext` as their module (`lvext.Ext80` in reprs, tracebacks and
+  new pickles); pickles made by 0.2.0 still load.
 - Package metadata: Production/Stable, supported Python versions listed, the `dev`
   extra replaced by `requirements-dev.txt`.
 
