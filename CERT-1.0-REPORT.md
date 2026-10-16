@@ -58,9 +58,11 @@ the LabVIEW version and date; three raw datalog files are kept with their SHA-25
   products equal lvext's nearest-even rounding of the exact product, while each of the
   other three modes disagrees on more than 40 of them;
 - the two places where LabVIEW's bytes and lvext's differ, both from bit patterns the
-  library call produced by adding one to the exponent field: an unnormal (LabVIEW drops
-  the integer bit; lvext refuses it) and a pseudo-denormal (LabVIEW shifts the whole
-  significand under exponent 0, halving it; lvext writes its value).
+  library call produced by adding one to the exponent field: an unnormal (LabVIEW reads
+  it as if the integer bit were set; lvext refuses it) and a pseudo-denormal (LabVIEW
+  shifts the whole significand under exponent 0, halving it; lvext writes its value).
+  The same rule predicts that LabVIEW writes a true subnormal EXT at half its value; the
+  GUIDE states this inferred difference.
 
 Not capturable over COM: EXT values below 2**-16382 and NaN payload bits beyond a
 double's (inputs arrive as doubles: 64-bit integers and decimals sent as `VT_I8`,

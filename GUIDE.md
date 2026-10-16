@@ -128,9 +128,10 @@ assert str(Ext80.from_decimal(Decimal("sNaN")).to_decimal()) == "sNaN1"
 
 ## LabVIEW
 
-- **In a library call.** LabVIEW's C headers (`cintools`) describe `floatExt` as two
-  32-bit halves of the significand, low half first, then the 16-bit sign and exponent:
-  the x87 layout, little-endian. Use `Ext80.from_bytes(data, "little")`.
+- **In a library call.** On Windows x86 and x64, LabVIEW's C headers (`cintools`)
+  describe `floatExt` as two 32-bit halves of the significand, low half first, then the
+  16-bit sign and exponent: the x87 layout, little-endian, 10 bytes. Use
+  `Ext80.from_bytes(data, "little")`. On ARM targets the headers make it a plain double.
 - **Flattened.** LabVIEW 2026 writes the 16-byte binary128 layout, big-endian. The
   tests check 401 datalog records written by LabVIEW 2026 26.3.1f1 on Windows through
   three shipped VIs with EXT terminals (`tests/fixtures/labview2026`, made by
@@ -141,12 +142,17 @@ assert str(Ext80.from_decimal(Decimal("sNaN")).to_decimal()) == "sNaN1"
   the exact product, with constants that are pi/180 and 180/pi correctly rounded.
 - **Where LabVIEW and lvext differ.** The capture VI's library call doubles a value by
   adding one to the exponent field, which turns zero into an unnormal and wraps an
-  infinity or NaN into a pseudo-denormal. LabVIEW flattened the unnormal by dropping the
-  integer bit (lvext raises `InvalidEncodingError`: the encoding has no value) and the
+  infinity or NaN into a pseudo-denormal. LabVIEW flattened the unnormal (exponent 1,
+  significand 0) as if its integer bit were set, giving the smallest normal number
+  (lvext raises `InvalidEncodingError`: the encoding has no value), and the
   pseudo-denormal by shifting all 64 significand bits under exponent 0, which halves its
-  value (lvext writes the value, under exponent 1).
+  value (lvext writes the value, under exponent 1). The rule that reproduces every
+  capture keeps the 63 fraction bits for exponents 1 and up and all 64 bits for
+  exponent 0, so LabVIEW very likely also writes a true subnormal EXT (below
+  2**-16382) at half its value; lvext writes the exact value, so for such values the
+  bytes would differ, and reading LabVIEW's bytes back would give half the original.
 - **Not observed.** Values only reach LabVIEW over COM as doubles, so the captures hold
-  no EXT below 2**-16382 and no NaN payload bits beyond a double's, and LabVIEW was not
+  no true subnormal EXT (the point above is an inference) and no NaN payload bits beyond a double's, and LabVIEW was not
   observed reading 16-byte values that carry more than 64 significant bits.
 - **The 16-byte container.** `pack_ext128` and `unpack_ext128` zero-pad the 80-bit value
   at the top (with `"little"`, a 16-byte `long double` on x86-64 compilers such as GCC
