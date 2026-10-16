@@ -96,3 +96,24 @@ def test_cli_messages_stay_short_for_huge_input(capsys: pytest.CaptureFixture[st
     assert main(["decode", "g" * 32, "--flattened"]) == 1
     err = capsys.readouterr().err.splitlines()
     assert len(err) == 3 and all(len(line) < 120 for line in err)
+
+
+def test_an_int_out_of_range_is_described_by_its_size() -> None:
+    with pytest.raises(LvextError, match=r"got an int of 332193 bits"):
+        Ext80(False, 10**100000, 0)
+
+
+@pytest.mark.parametrize("digits", [19, 21, 22, 40])
+def test_hex_needs_exactly_its_digit_count(digits: int) -> None:
+    with pytest.raises(LvextError, match=f"expected 20 hex digits, got {digits}"):
+        Ext80.from_hex("1" * digits)
+
+
+def test_cli_padded_container_keeps_the_sign(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["decode", "ffffffffffff" + "bfff8000000000000000", "--json"]) == 0
+    assert '"sign": "-"' in capsys.readouterr().out
+
+
+def test_cli_negative_value_may_start_with_a_point(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["encode", "-.5e1"]) == 0
+    assert capsys.readouterr().out == "c001a000000000000000\n"

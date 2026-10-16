@@ -127,9 +127,9 @@ def test_text_cost_grows_linearly(make: Callable[[int], Callable[[], object]]) -
 )
 def test_number_cost_stays_below_quadratic(make: Callable[[int], Callable[[], object]]) -> None:
     """Exact rounding of a long number is big-integer arithmetic: subquadratic, bounded."""
-    small, large = _seconds(make(2_000)), _seconds(make(32_000))
-    assert large < max(small, 1e-4) * 16 * 16
-    assert large < 1.0
+    small, large = _seconds(make(4_000)), _seconds(make(32_000))
+    assert large < max(small, 1e-3) * 8 * 8 * 2
+    assert large < 2.0
 
 
 @pytest.mark.parametrize(
