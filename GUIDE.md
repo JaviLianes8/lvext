@@ -185,7 +185,8 @@ $ lvext decode 3fff0000000000000000000000000000 --flattened --json
 Output goes to standard output with exit status 0. Bad input prints one
 `lvext: error: ...` line to standard error and exits 1. A usage error (an unknown or
 conflicting option) also exits 1, after the usage line, with argparse's own message
-(`lvext encode: error: ...`) on one line of at most 160 characters. If the output
+(`lvext encode: error: ...`) on one line, the message after that prefix cut to 160
+characters. If the output
 cannot be written (a closed pipe), lvext prints `lvext: error: cannot write the output`
 to standard error and exits 1.
 
@@ -212,6 +213,12 @@ Their messages quote at most 40 characters of the offending value.
 - An unknown rounding name raises `LvextError` for every value; 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
 - Error messages quote at most 40 characters of the input.
+- `unpack_ext128` checks its argument's type like the other readers: 0.2.0 read an int
+  `n` as `n` zero bytes and a list as bytes; both now raise `LvextError`, as does a
+  released memoryview anywhere.
+- `canonical()` on a subclass of `Ext80` returns that subclass.
+- The command line exits 1 with one error line when its output cannot be written, and
+  a usage error is one line.
 - The `rounding` arguments are typed `RoundingMode` (exported): a member or its name.
 - Public classes report `lvext` as their module, for example `lvext.InvalidEncodingError`
   in a traceback.

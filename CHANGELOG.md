@@ -34,7 +34,7 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
 - An unknown rounding name raises `LvextError` whatever the value. 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
 - Error messages quote at most 40 characters of the offending value; command line
-  usage errors are one line of at most 160 characters.
+  usage errors are one line, the message after the prefix cut to 160 characters.
 - The `rounding` parameters are typed to accept the mode names (`"floor"` and so on)
   as well as the `Rounding` members, as they always did at run time.
 - `Ext80` keeps its bit-level methods in a private base class; its fields, methods and
