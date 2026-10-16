@@ -94,8 +94,10 @@ def overflow_saturates(negative: bool, mode: Rounding) -> bool:
 
 def as_rounding(value: object) -> Rounding:
     """Return the Rounding for a member or its string value, else raise LvextError."""
+    if isinstance(value, Rounding):
+        return value
     try:
         return Rounding(value)
-    except ValueError:
+    except Exception:  # unknown name, or a hostile object failing inside the lookup
         names = ", ".join(mode.value for mode in Rounding)
         raise LvextError(f"rounding must be one of {names}, got {short(value)}") from None

@@ -45,6 +45,8 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
 - `unpack_ext128` checks its argument's type like the other readers (0.2.0 read an int
   `n` as `n` zero bytes and a list as bytes), and a released memoryview raises
   `LvextError` instead of a plain `ValueError`.
+- A `rounding` argument that is neither a mode nor a known name raises `LvextError`
+  even when the object misbehaves (for example a failing `repr`).
 - `Ext80` stores its exponent and mantissa as plain ints, so an int subclass cannot
   change comparisons, equality or hashing.
 - A Decimal with very many digits is read in linear time: digits beyond 12,000 only
