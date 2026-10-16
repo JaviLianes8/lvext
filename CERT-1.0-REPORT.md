@@ -135,10 +135,15 @@ before and after.
 Result: 37 of 40 killed at once, 3 survivors (19, 31, 32) and one weak kill (21) closed
 by contracts in 74a0328, each confirmed to fail on its mutant.
 
-## Packaging and end-to-end (items 8, 10, 14), author run at ebaf6d6
+## Packaging and end-to-end (items 8, 10, 14)
+
+Author run at ebaf6d6; lens d repeated it at 8e6cfb0 (833 passed on each interpreter)
+and the independent reviewer at fb04a42, after the last source change (860 passed on
+each of the six interpreters, 883 from the source tree).
+
 
 - `python -m build` and `twine check --strict` on a clean clone.
-- Wheel: the fourteen package modules, `py.typed`, LICENSE and metadata. Sdist: `src`,
+- Wheel: the fifteen package modules, `py.typed`, LICENSE and metadata. Sdist: `src`,
   `tests` with the LabVIEW captures, `conftest.py`, README, GUIDE, CHANGELOG,
   CONTRIBUTING, LICENSE, pyproject and the `.gitignore` hatchling adds; no capture
   script, report or scratch files.
@@ -180,3 +185,14 @@ it), the index of `encode` in the negative-value rewrite, two floor-log2 and sca
 boundary comparisons (exact powers of two are fixed by the carry), `exact <= 0` after zero
 returned, the 128-bit int shortcut in error quoting, and the `Rounding` member shortcut.
 Message or traceback only: the list of mode names in the rounding error and `from None`.
+
+## Independent review (item 16)
+
+| Round | Head | Verdict | Findings and outcome |
+| --- | --- | --- | --- |
+| 1 | fb04a42 | FAIL (items 6, 16, 18) | every gate, build, six-interpreter wheel run and the PyPI upgrade passed; its own 40 mutations: 38 killed, 2 survived (an infinity narrowed with `exact=False`; the 40-character quote boundary, message only), both now pinned in `tests/test_contract_api.py`; stale paragraph in `IMPROVEMENTS-round.md` and an outdated module count in this report corrected; in a670efc |
+
+Kept as they are: the subject of b9340b5 contains the identifier `RoundingMode` in its
+original case (rewriting it would need a force-push of a published branch; the merge is
+a squash), the cut-off message reports the length of the quoted `repr`, and
+`lvext.annotations` (from the future import) stays visible outside `__all__`.
