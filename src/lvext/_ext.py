@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from ._bits import Bytes
 from ._errors import LvextError
-from ._text import ByteOrder, check_order
+from ._text import ByteOrder, as_bytes, check_order
 from ._value import Ext80
 
 _LOW80 = (1 << 80) - 1
@@ -48,7 +48,7 @@ def unpack_ext128(data: Bytes, byteorder: ByteOrder = "big") -> float:
     >>> unpack_ext128(bytes.fromhex("ffffffffffff3fff8000000000000000"))
     1.0
     """
-    raw = bytes(data)
+    raw = as_bytes(data)
     if len(raw) != 16:
         raise LvextError(f"padded extended value must be 16 bytes, got {len(raw)}")
     return Ext80.from_int(int.from_bytes(raw, check_order(byteorder)) & _LOW80).to_float()

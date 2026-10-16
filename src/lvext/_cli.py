@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import math
+import os
 import re
 import sys
 from collections.abc import Sequence
@@ -40,12 +42,18 @@ significant bytes are padding. Whitespace, underscores and 0x are ignored.
 """
 
 
+_MAX_USAGE_MESSAGE = 160
+
+
 class _Parser(argparse.ArgumentParser):
     """An ArgumentParser that reports usage errors with exit status 1."""
 
     def error(self, message: str) -> NoReturn:
         self.print_usage(sys.stderr)
-        self.exit(1, f"{self.prog}: error: {message}\n")
+        flat = " ".join(message.split())  # one line, however the arguments looked
+        if len(flat) > _MAX_USAGE_MESSAGE:
+            flat = flat[: _MAX_USAGE_MESSAGE - 3] + "..."
+        self.exit(1, f"{self.prog}: error: {flat}\n")
 
 
 def _parse_value(text: str) -> Decimal | Fraction:
@@ -53,7 +61,7 @@ def _parse_value(text: str) -> Decimal | Fraction:
     try:
         return Fraction(cleaned) if "/" in cleaned else Decimal(cleaned)
     except (InvalidOperation, ValueError, ZeroDivisionError):
-        raise LvextError(f"not a number, or beyond the decimal range: {short(text)}") from None
+        raise LvextError(f"not a number, or too long or large to read: {short(text)}") from None
 
 
 def _parse_hex(text: str, byteorder: ByteOrder, args: argparse.Namespace) -> Ext80:
@@ -169,5 +177,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     except LvextError as exc:
         print(f"lvext: error: {exc}", file=sys.stderr)
         return 1
-    print(output)
+    try:
+        print(output, flush=True)
+    except (OSError, ValueError, AttributeError):  # closed or broken output
+        _silence_stdout()
+        print("lvext: error: cannot write the output", file=sys.stderr)
+        return 1
     return 0
+
+
+def _silence_stdout() -> None:
+    """Point stdout at the null device so the interpreter's final flush stays quiet."""
+    with contextlib.suppress(OSError):
+        sys.stdout = open(os.devnull, "w")  # noqa: SIM115

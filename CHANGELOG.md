@@ -33,7 +33,8 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
   the extended range gives infinity.
 - An unknown rounding name raises `LvextError` whatever the value. 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
-- Error messages quote at most 40 characters of the offending value.
+- Error messages quote at most 40 characters of the offending value; command line
+  usage errors are one line of at most 160 characters.
 - The `rounding` parameters are typed to accept the mode names (`"floor"` and so on)
   as well as the `Rounding` members, as they always did at run time.
 - `Ext80` keeps its bit-level methods in a private base class; its fields, methods and
@@ -41,6 +42,15 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
 - `RoundingMode` is exported: the type of every `rounding` parameter.
 - Public classes report `lvext` as their module (`lvext.Ext80` in reprs, tracebacks and
   new pickles); pickles made by 0.2.0 still load.
+- `unpack_ext128` checks its argument's type like the other readers (0.2.0 read an int
+  `n` as `n` zero bytes and a list as bytes), and a released memoryview raises
+  `LvextError` instead of a plain `ValueError`.
+- `Ext80` stores its exponent and mantissa as plain ints, so an int subclass cannot
+  change comparisons, equality or hashing.
+- A Decimal with very many digits is read in linear time: digits beyond 12,000 only
+  decide rounding as "zero or not", so they are folded into one (results unchanged).
+- The command line exits 1 with one error line when its output cannot be written,
+  instead of a traceback.
 - Package metadata: Production/Stable, supported Python versions listed, the `dev`
   extra replaced by `requirements-dev.txt`.
 

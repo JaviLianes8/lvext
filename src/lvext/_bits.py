@@ -9,7 +9,7 @@ from . import _codec, _flat
 from ._errors import LvextError, require
 from ._kind import EXP_MAX, ExtKind, classify
 from ._rounding import Rounding, RoundingMode, as_rounding
-from ._text import ByteOrder, check_order, parse_hex, short
+from ._text import ByteOrder, as_bytes, check_order, parse_hex, short
 
 Bytes = bytes | bytearray | memoryview
 _T = TypeVar("_T", bound="Encoding80")
@@ -28,6 +28,9 @@ class Encoding80:
             raise LvextError("negative must be a bool")
         require(self.exponent, (int,), "exponent")
         require(self.mantissa, (int,), "mantissa")
+        # Keep plain ints: an int subclass could lie in comparisons, hashing or equality.
+        object.__setattr__(self, "exponent", int.__index__(self.exponent))
+        object.__setattr__(self, "mantissa", int.__index__(self.mantissa))
         if not 0 <= self.exponent <= EXP_MAX:
             raise LvextError(f"exponent must be an int in 0..{EXP_MAX}, got {short(self.exponent)}")
         if not 0 <= self.mantissa <= _codec.MANTISSA_MASK:
@@ -66,8 +69,7 @@ class Encoding80:
         >>> Ext80.from_bytes(bytes.fromhex("0000000000000080ff3f"), "little").to_float()
         1.0
         """
-        require(data, (bytes, bytearray, memoryview), "data")
-        raw = bytes(data)
+        raw = as_bytes(data)
         if len(raw) != 10:
             raise LvextError(f"extended value must be 10 bytes, got {len(raw)}")
         return cls.from_int(int.from_bytes(raw, check_order(byteorder)))
@@ -111,8 +113,7 @@ class Encoding80:
         >>> Ext80.from_flattened(bytes.fromhex("3fff" + "00" * 14)).to_float()
         1.0
         """
-        require(data, (bytes, bytearray, memoryview), "data")
-        raw = bytes(data)
+        raw = as_bytes(data)
         if len(raw) != 16:
             raise LvextError(f"flattened EXT must be 16 bytes, got {len(raw)}")
         mode = as_rounding(rounding)

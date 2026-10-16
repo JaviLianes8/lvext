@@ -66,7 +66,8 @@ zero, subnormal, pseudo-denormal and normal, and `kind.is_nan` for the two NaNs.
 
 Every argument named `rounding` takes a `Rounding` member or its string value
 (`"nearest-even"`, `"floor"`, `"ceiling"`, `"toward-zero"`); every `byteorder` takes
-`"big"` or `"little"`. Byte inputs may be `bytes`, `bytearray` or `memoryview`.
+`"big"` or `"little"`. Byte inputs may be `bytes`, `bytearray` or `memoryview`; a
+memoryview is read as its raw bytes, whatever its item format.
 
 ```python
 from fractions import Fraction
@@ -184,7 +185,9 @@ $ lvext decode 3fff0000000000000000000000000000 --flattened --json
 Output goes to standard output with exit status 0. Bad input prints one
 `lvext: error: ...` line to standard error and exits 1. A usage error (an unknown or
 conflicting option) also exits 1, after the usage line, with argparse's own message
-(`lvext encode: error: ...`), which quotes the option as given.
+(`lvext encode: error: ...`) on one line of at most 160 characters. If the output
+cannot be written (a closed pipe), lvext prints `lvext: error: cannot write the output`
+to standard error and exits 1.
 
 ## Errors
 

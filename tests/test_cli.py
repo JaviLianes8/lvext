@@ -142,7 +142,7 @@ def test_decode_ignores_tabs_and_newlines(capsys: Capture) -> None:
 def test_exponent_beyond_the_decimal_range_is_reported(capsys: Capture) -> None:
     code, _, err = _run(capsys, "encode", "1e999999999999999999999")
     assert code == 1
-    assert "beyond the decimal range" in err
+    assert "too long or large to read" in err
 
 
 def test_encode_flattened(capsys: Capture) -> None:
