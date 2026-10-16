@@ -88,11 +88,9 @@ def test_closed_output_is_one_error_line(monkeypatch: pytest.MonkeyPatch) -> Non
     assert err.getvalue() == "lvext: error: cannot write the output\n"
 
 
-def test_a_reader_that_goes_away_gives_exit_1() -> None:
-    code = (
-        "import sys; sys.stdout.close(); from lvext._cli import main; "
-        "sys.exit(main(['encode', '1']))"
-    )
+@pytest.mark.parametrize("args", [["encode", "1"], ["--version"], ["--help"], ["encode", "-h"]])
+def test_a_reader_that_goes_away_gives_exit_1(args: list[str]) -> None:
+    code = f"import os, sys; os.close(1); from lvext._cli import main; sys.exit(main({args!r}))"
     env = {**os.environ, "PYTHONPATH": str(Path(lvext.__file__).resolve().parents[1])}
     result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env)
     assert result.returncode == 1
