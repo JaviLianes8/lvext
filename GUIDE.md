@@ -152,8 +152,9 @@ assert str(Ext80.from_decimal(Decimal("sNaN")).to_decimal()) == "sNaN1"
   2**-16382) at half its value; lvext writes the exact value, so for such values the
   bytes would differ, and reading LabVIEW's bytes back would give half the original.
 - **Not observed.** Values only reach LabVIEW over COM as doubles, so the captures hold
-  no true subnormal EXT (the point above is an inference) and no NaN payload bits beyond a double's, and LabVIEW was not
-  observed reading 16-byte values that carry more than 64 significant bits.
+  no true subnormal EXT (the point above is an inference) and no NaN payload bits
+  beyond a double's, and LabVIEW was not observed reading 16-byte values that carry
+  more than 64 significant bits.
 - **The 16-byte container.** `pack_ext128` and `unpack_ext128` zero-pad the 80-bit value
   at the top (with `"little"`, a 16-byte `long double` on x86-64 compilers such as GCC
   and Clang). That is not LabVIEW's flattened form: use `to_flattened` for LabVIEW.
