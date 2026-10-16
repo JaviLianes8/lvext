@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import math
 from decimal import Decimal
 from fractions import Fraction
 from typing import Any
 
 import pytest
 
-from lvext import Ext80, LvextError, Rounding, pack_ext, pack_ext128, unpack_ext
+from lvext import Ext80, LvextError, Narrowed, Rounding, pack_ext, pack_ext128, unpack_ext
 from lvext._cli import main
 
 
@@ -131,3 +132,20 @@ def test_public_classes_name_the_package_as_their_module() -> None:
     value = Ext80.from_float(-2.5)
     assert pickle.loads(pickle.dumps(value)) == value
     assert b"_value" not in pickle.dumps(value, protocol=0)
+
+
+@pytest.mark.parametrize("mode", list(Rounding))
+@pytest.mark.parametrize("value", [math.inf, -math.inf])
+def test_narrowing_an_infinity_is_exact_in_every_mode(value: float, mode: Rounding) -> None:
+    assert Ext80.from_float(value).narrow(mode) == Narrowed(value, True)
+
+
+def test_a_value_of_exactly_the_quote_limit_is_quoted_whole() -> None:
+    text = "x" * 38  # repr adds two quotes: 40 characters
+    with pytest.raises(LvextError) as info:
+        Ext80.from_float(1.0).to_bytes(text)  # type: ignore[arg-type]
+    assert str(info.value).endswith(repr(text))
+    longer = "x" * 39
+    with pytest.raises(LvextError) as info:
+        Ext80.from_float(1.0).to_bytes(longer)  # type: ignore[arg-type]
+    assert str(info.value).endswith("... (41 characters)")
