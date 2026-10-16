@@ -1,0 +1,2423 @@
+{
+ "labview": "26.3.1f1",
+ "date": "2026-10-16",
+ "method": "front-panel datalog of shipped VIs driven over ActiveX; see the script",
+ "vis": {
+  "double": "<LabVIEW 2026>\\examples\\Connectivity\\Libraries and Executables\\DLL Calling VIs\\LVfloatExt.vi",
+  "deg_to_rad": "<LabVIEW 2026>\\vi.lib\\Utility\\AngleManip\\Degrees to Radians (Scalar EXT).vi",
+  "rad_to_deg": "<LabVIEW 2026>\\vi.lib\\Utility\\AngleManip\\Radians to Degrees (Scalar EXT).vi"
+ },
+ "samples_sha256": {
+  "double_sample.dat": "e6e1793e204027dc68cd55d2bdee24b7e4187f42af13469ad923660e4ecf77f1",
+  "deg_to_rad_sample.dat": "a95feba89719b9b4346cfa4e33ccbccca50f3fae85473e7b2c3f5dd5b7e68d6b",
+  "rad_to_deg_sample.dat": "bca1d90c8c5c6ed61533e63b239f75caf80d046073003265ef76ff6fc6c8fa80"
+ },
+ "records": [
+  {
+   "vi": "double",
+   "double": "0000000000000000",
+   "input": "00000000000000000000000000000000",
+   "output": "00010000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8000000000000000",
+   "input": "80000000000000000000000000000000",
+   "output": "80010000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3ff0000000000000",
+   "input": "3fff0000000000000000000000000000",
+   "output": "40000000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c004000000000000",
+   "input": "c0004000000000000000000000000000",
+   "output": "c0014000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3fb999999999999a",
+   "input": "3ffb999999999999a000000000000000",
+   "output": "3ffc999999999999a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3fd5555555555555",
+   "input": "3ffd5555555555555000000000000000",
+   "output": "3ffe5555555555555000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0010000000000000",
+   "input": "3c010000000000000000000000000000",
+   "output": "3c020000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0000000000000001",
+   "input": "3bcd0000000000000000000000000000",
+   "output": "3bce0000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000fffffffffffff",
+   "input": "3c00ffffffffffffe000000000000000",
+   "output": "3c01ffffffffffffe000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7fefffffffffffff",
+   "input": "43fefffffffffffff000000000000000",
+   "output": "43fffffffffffffff000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "ffefffffffffffff",
+   "input": "c3fefffffffffffff000000000000000",
+   "output": "c3fffffffffffffff000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ff0000000000000",
+   "input": "7fff0000000000000000000000000000",
+   "output": "80008000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fff0000000000000",
+   "input": "ffff0000000000000000000000000000",
+   "output": "00008000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ff8000000000000",
+   "input": "7fff8000000000000000000000000000",
+   "output": "8000c000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fff8000000000000",
+   "input": "ffff8000000000000000000000000000",
+   "output": "0000c000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ff8000000000001",
+   "input": "7fff8000000000001000000000000000",
+   "output": "8000c000000000000800000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ffc0000000000ff",
+   "input": "7fffc0000000000ff000000000000000",
+   "output": "8000e00000000007f800000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fff123456789abcd",
+   "input": "ffff923456789abcd000000000000000",
+   "output": "0000c91a2b3c4d5e6800000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ff0000000000001",
+   "input": "7fff8000000000001000000000000000",
+   "output": "8000c000000000000800000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7ff4000000000000",
+   "input": "7fffc000000000000000000000000000",
+   "output": "8000e000000000000000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fff7ffffffffffff",
+   "input": "fffffffffffffffff000000000000000",
+   "output": "0000fffffffffffff800000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8006eb5834854702",
+   "input": "bbffbad60d2151c08000000000000000",
+   "output": "bc00bad60d2151c08000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c5bf37fec6bd7881",
+   "input": "c05bf37fec6bd7881000000000000000",
+   "output": "c05cf37fec6bd7881000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8009f97caef2f88a",
+   "input": "bc003f2f95de5f114000000000000000",
+   "output": "bc013f2f95de5f114000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c103e113f427d2bb",
+   "input": "c0103e113f427d2bb000000000000000",
+   "output": "c0113e113f427d2bb000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "80033b29d819c90f",
+   "input": "bbfe9d94ec0ce4878000000000000000",
+   "output": "bbff9d94ec0ce4878000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000daae3f019daee",
+   "input": "3c00b55c7e033b5dc000000000000000",
+   "output": "3c01b55c7e033b5dc000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "9287bb1a98f2ffd2",
+   "input": "bd287bb1a98f2ffd2000000000000000",
+   "output": "bd297bb1a98f2ffd2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c00d3e373e5f8d20",
+   "input": "c000d3e373e5f8d20000000000000000",
+   "output": "c001d3e373e5f8d20000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800d83c64b202f42",
+   "input": "bc00b078c96405e84000000000000000",
+   "output": "bc01b078c96405e84000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000a4f690b384ba6",
+   "input": "3c0049ed21670974c000000000000000",
+   "output": "3c0149ed21670974c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800504918fa5c61f",
+   "input": "bbff412463e97187c000000000000000",
+   "output": "bc00412463e97187c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c12d8eb66e984de3",
+   "input": "c012d8eb66e984de3000000000000000",
+   "output": "c013d8eb66e984de3000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bebf093932873e81",
+   "input": "bfebf093932873e81000000000000000",
+   "output": "bfecf093932873e81000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "00027eef84b09fc5",
+   "input": "3bfe3f77c2584fe28000000000000000",
+   "output": "3bff3f77c2584fe28000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8cc8c74a8b81086d",
+   "input": "bccc8c74a8b81086d000000000000000",
+   "output": "bccd8c74a8b81086d000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "63c37d1b6820d71c",
+   "input": "423c37d1b6820d71c000000000000000",
+   "output": "423d37d1b6820d71c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "4c58b2f2dab653c8",
+   "input": "40c58b2f2dab653c8000000000000000",
+   "output": "40c68b2f2dab653c8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8d66ba44f13522e0",
+   "input": "bcd66ba44f13522e0000000000000000",
+   "output": "bcd76ba44f13522e0000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3a95a2f90a5fc815",
+   "input": "3fa95a2f90a5fc815000000000000000",
+   "output": "3faa5a2f90a5fc815000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "d68223fcf60f4660",
+   "input": "c168223fcf60f4660000000000000000",
+   "output": "c169223fcf60f4660000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bf9e827ee1650b10",
+   "input": "bff9e827ee1650b10000000000000000",
+   "output": "bffae827ee1650b10000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0006fae5b2aa4460",
+   "input": "3bffbeb96caa91180000000000000000",
+   "output": "3c00beb96caa91180000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000b604163dbb78a",
+   "input": "3c006c082c7b76f14000000000000000",
+   "output": "3c016c082c7b76f14000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fbc02165914dd152",
+   "input": "c3bc02165914dd152000000000000000",
+   "output": "c3bd02165914dd152000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8000884379fc596b",
+   "input": "bbfc1086f3f8b2d60000000000000000",
+   "output": "bbfd1086f3f8b2d60000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "97704e70b1d97bda",
+   "input": "bd7704e70b1d97bda000000000000000",
+   "output": "bd7804e70b1d97bda000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3eb6d978f8f6e4a1",
+   "input": "3feb6d978f8f6e4a1000000000000000",
+   "output": "3fec6d978f8f6e4a1000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0841933fe618c967",
+   "input": "3c841933fe618c967000000000000000",
+   "output": "3c851933fe618c967000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "cdfae428d830af20",
+   "input": "c0dfae428d830af20000000000000000",
+   "output": "c0e0ae428d830af20000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "363f0bface3dd93e",
+   "input": "3f63f0bface3dd93e000000000000000",
+   "output": "3f64f0bface3dd93e000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8008c039a093b8c8",
+   "input": "bc001807341277190000000000000000",
+   "output": "bc011807341277190000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "32af73f21c61580f",
+   "input": "3f2af73f21c61580f000000000000000",
+   "output": "3f2bf73f21c61580f000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bf7253e63bff589d",
+   "input": "bff7253e63bff589d000000000000000",
+   "output": "bff8253e63bff589d000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c089f9cb66dece8c",
+   "input": "c0089f9cb66dece8c000000000000000",
+   "output": "c0099f9cb66dece8c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "a88eb86283de5118",
+   "input": "be88eb86283de5118000000000000000",
+   "output": "be89eb86283de5118000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "088b0540eda774fc",
+   "input": "3c88b0540eda774fc000000000000000",
+   "output": "3c89b0540eda774fc000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3f152cd03e0abd73",
+   "input": "3ff152cd03e0abd73000000000000000",
+   "output": "3ff252cd03e0abd73000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3f97867f6f75c1ce",
+   "input": "3ff97867f6f75c1ce000000000000000",
+   "output": "3ffa7867f6f75c1ce000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "d418661c01b9b0ee",
+   "input": "c1418661c01b9b0ee000000000000000",
+   "output": "c1428661c01b9b0ee000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "7cd05f221a8671dd",
+   "input": "43cd05f221a8671dd000000000000000",
+   "output": "43ce05f221a8671dd000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "9b28e29f248ac53a",
+   "input": "bdb28e29f248ac53a000000000000000",
+   "output": "bdb38e29f248ac53a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800ae35af8f15f03",
+   "input": "bc005c6b5f1e2be06000000000000000",
+   "output": "bc015c6b5f1e2be06000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c55860ebf089f6da",
+   "input": "c055860ebf089f6da000000000000000",
+   "output": "c056860ebf089f6da000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3eb897887c0cb431",
+   "input": "3feb897887c0cb431000000000000000",
+   "output": "3fec897887c0cb431000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "00057a0734b4f69d",
+   "input": "3bff5e81cd2d3da74000000000000000",
+   "output": "3c005e81cd2d3da74000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0004dd9603fdf6df",
+   "input": "3bff376580ff7db7c000000000000000",
+   "output": "3c00376580ff7db7c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8007008f8614c5df",
+   "input": "bbffc023e1853177c000000000000000",
+   "output": "bc00c023e1853177c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "416f79f053033740",
+   "input": "4016f79f053033740000000000000000",
+   "output": "4017f79f053033740000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "419a5ebae71ba825",
+   "input": "4019a5ebae71ba825000000000000000",
+   "output": "401aa5ebae71ba825000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c0d0c93cc9fd3d1b",
+   "input": "c00d0c93cc9fd3d1b000000000000000",
+   "output": "c00e0c93cc9fd3d1b000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "a190dd80c7ded0dd",
+   "input": "be190dd80c7ded0dd000000000000000",
+   "output": "be1a0dd80c7ded0dd000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "4d34bedc994951d4",
+   "input": "40d34bedc994951d4000000000000000",
+   "output": "40d44bedc994951d4000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "80081120407dc924",
+   "input": "bc000224080fb9248000000000000000",
+   "output": "bc010224080fb9248000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8009ba6a0733bfd9",
+   "input": "bc00374d40e677fb2000000000000000",
+   "output": "bc01374d40e677fb2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "2904bf0477cd01c8",
+   "input": "3e904bf0477cd01c8000000000000000",
+   "output": "3e914bf0477cd01c8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000d6886197b142b",
+   "input": "3c00ad10c32f62856000000000000000",
+   "output": "3c01ad10c32f62856000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800af6c2e8871cc5",
+   "input": "bc005ed85d10e398a000000000000000",
+   "output": "bc015ed85d10e398a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800ccf5bf0647c1f",
+   "input": "bc0099eb7e0c8f83e000000000000000",
+   "output": "bc0199eb7e0c8f83e000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "f75aecfd61006d36",
+   "input": "c375aecfd61006d36000000000000000",
+   "output": "c376aecfd61006d36000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "fa3b33c9c396a62c",
+   "input": "c3a3b33c9c396a62c000000000000000",
+   "output": "c3a4b33c9c396a62c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bef7ec716553c784",
+   "input": "bfef7ec716553c784000000000000000",
+   "output": "bff07ec716553c784000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "6176ae2ec626c12d",
+   "input": "42176ae2ec626c12d000000000000000",
+   "output": "42186ae2ec626c12d000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c0e19c0ac1235dd6",
+   "input": "c00e19c0ac1235dd6000000000000000",
+   "output": "c00f19c0ac1235dd6000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8005e77f119a9789",
+   "input": "bbff79dfc466a5e24000000000000000",
+   "output": "bc0079dfc466a5e24000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3f6b0dc524682181",
+   "input": "3ff6b0dc524682181000000000000000",
+   "output": "3ff7b0dc524682181000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800ec2a0385cde43",
+   "input": "bc00d854070b9bc86000000000000000",
+   "output": "bc01d854070b9bc86000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c0c22e28fdd3e720",
+   "input": "c00c22e28fdd3e720000000000000000",
+   "output": "c00d22e28fdd3e720000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0009e7c6c5d710d9",
+   "input": "3c003cf8d8bae21b2000000000000000",
+   "output": "3c013cf8d8bae21b2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c043919c4c526795",
+   "input": "c0043919c4c526795000000000000000",
+   "output": "c0053919c4c526795000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0007b51271296bb1",
+   "input": "3bffed449c4a5aec4000000000000000",
+   "output": "3c00ed449c4a5aec4000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3ed995ae1396303a",
+   "input": "3fed995ae1396303a000000000000000",
+   "output": "3fee995ae1396303a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "80031debce93e6d1",
+   "input": "bbfe8ef5e749f3688000000000000000",
+   "output": "bbff8ef5e749f3688000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "beeaec47c7143bbb",
+   "input": "bfeeaec47c7143bbb000000000000000",
+   "output": "bfefaec47c7143bbb000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "40c1e600ded13815",
+   "input": "400c1e600ded13815000000000000000",
+   "output": "400d1e600ded13815000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "80070c08699d46d6",
+   "input": "bbffc3021a6751b58000000000000000",
+   "output": "bc00c3021a6751b58000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0004687c32615304",
+   "input": "3bff1a1f0c9854c10000000000000000",
+   "output": "3c001a1f0c9854c10000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800c7ad79ff269e9",
+   "input": "bc008f5af3fe4d3d2000000000000000",
+   "output": "bc018f5af3fe4d3d2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c0b7cf564c4c80b8",
+   "input": "c00b7cf564c4c80b8000000000000000",
+   "output": "c00c7cf564c4c80b8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bec87f4afc527ff7",
+   "input": "bfec87f4afc527ff7000000000000000",
+   "output": "bfed87f4afc527ff7000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bea9f8ea25692d0c",
+   "input": "bfea9f8ea25692d0c000000000000000",
+   "output": "bfeb9f8ea25692d0c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "410e4a01a4254e79",
+   "input": "4010e4a01a4254e79000000000000000",
+   "output": "4011e4a01a4254e79000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800ded005ac3b19d",
+   "input": "bc00bda00b587633a000000000000000",
+   "output": "bc01bda00b587633a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000ac78f0423836a",
+   "input": "3c0058f1e084706d4000000000000000",
+   "output": "3c0158f1e084706d4000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c1706f4ab5cfd87f",
+   "input": "c01706f4ab5cfd87f000000000000000",
+   "output": "c01806f4ab5cfd87f000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "be8bcf2028ff7847",
+   "input": "bfe8bcf2028ff7847000000000000000",
+   "output": "bfe9bcf2028ff7847000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "aca23b2f973c5376",
+   "input": "beca23b2f973c5376000000000000000",
+   "output": "becb23b2f973c5376000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0005a9a38287290d",
+   "input": "3bff6a68e0a1ca434000000000000000",
+   "output": "3c006a68e0a1ca434000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "473f82f9bca55957",
+   "input": "4073f82f9bca55957000000000000000",
+   "output": "4074f82f9bca55957000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0009c2cae4d95182",
+   "input": "3c0038595c9b2a304000000000000000",
+   "output": "3c0138595c9b2a304000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3f388fa1953bdbfe",
+   "input": "3ff388fa1953bdbfe000000000000000",
+   "output": "3ff488fa1953bdbfe000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "41841c6c64988beb",
+   "input": "401841c6c64988beb000000000000000",
+   "output": "401941c6c64988beb000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3fb4b3d09777910c",
+   "input": "3ffb4b3d09777910c000000000000000",
+   "output": "3ffc4b3d09777910c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0000e78534400e0b",
+   "input": "3bfccf0a68801c160000000000000000",
+   "output": "3bfdcf0a68801c160000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8002617e3ee21953",
+   "input": "bbfe30bf1f710ca98000000000000000",
+   "output": "bbff30bf1f710ca98000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000e62cf06030e0b",
+   "input": "3c00cc59e0c061c16000000000000000",
+   "output": "3c01cc59e0c061c16000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000295351aa56022",
+   "input": "3bfe4a9a8d52b0110000000000000000",
+   "output": "3bff4a9a8d52b0110000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "41963d43a4ac011a",
+   "input": "401963d43a4ac011a000000000000000",
+   "output": "401a63d43a4ac011a000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bfa6a0d450c56642",
+   "input": "bffa6a0d450c56642000000000000000",
+   "output": "bffb6a0d450c56642000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c07a196c4f10d2f1",
+   "input": "c007a196c4f10d2f1000000000000000",
+   "output": "c008a196c4f10d2f1000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000edb0c462cc2ba",
+   "input": "3c00db6188c598574000000000000000",
+   "output": "3c01db6188c598574000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "406b0a7e5b16b08c",
+   "input": "4006b0a7e5b16b08c000000000000000",
+   "output": "4007b0a7e5b16b08c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "5675b916ea234745",
+   "input": "41675b916ea234745000000000000000",
+   "output": "41685b916ea234745000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "40cabb21cd3606ee",
+   "input": "400cabb21cd3606ee000000000000000",
+   "output": "400dabb21cd3606ee000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "6fd367fd9879bb29",
+   "input": "42fd367fd9879bb29000000000000000",
+   "output": "42fe367fd9879bb29000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "56f9bd6e15828710",
+   "input": "416f9bd6e15828710000000000000000",
+   "output": "41709bd6e15828710000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "f1d574c27b6747a3",
+   "input": "c31d574c27b6747a3000000000000000",
+   "output": "c31e574c27b6747a3000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800412037e15ea6a",
+   "input": "bbff0480df857a9a8000000000000000",
+   "output": "bc000480df857a9a8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8006d5b74df25d74",
+   "input": "bbffb56dd37c975d0000000000000000",
+   "output": "bc00b56dd37c975d0000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000097e8e4d29114",
+   "input": "3bfc2fd1c9a522280000000000000000",
+   "output": "3bfd2fd1c9a522280000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800b81300ecdc227",
+   "input": "bc00702601d9b844e000000000000000",
+   "output": "bc01702601d9b844e000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "2bd63f265d929cf2",
+   "input": "3ebd63f265d929cf2000000000000000",
+   "output": "3ebe63f265d929cf2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "4e6148fbfbe6b7f3",
+   "input": "40e6148fbfbe6b7f3000000000000000",
+   "output": "40e7148fbfbe6b7f3000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3fcc8fb492a208b2",
+   "input": "3ffcc8fb492a208b2000000000000000",
+   "output": "3ffdc8fb492a208b2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bb807c6c440c16fe",
+   "input": "bfb807c6c440c16fe000000000000000",
+   "output": "bfb907c6c440c16fe000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "d02c4b8941d2de73",
+   "input": "c102c4b8941d2de73000000000000000",
+   "output": "c103c4b8941d2de73000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bff4d29d71ee9cca",
+   "input": "bfff4d29d71ee9cca000000000000000",
+   "output": "c0004d29d71ee9cca000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c044395a4d2bd4fa",
+   "input": "c0044395a4d2bd4fa000000000000000",
+   "output": "c0054395a4d2bd4fa000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bfb7f9d2f127f82f",
+   "input": "bffb7f9d2f127f82f000000000000000",
+   "output": "bffc7f9d2f127f82f000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "40fef8e91be978b2",
+   "input": "400fef8e91be978b2000000000000000",
+   "output": "4010ef8e91be978b2000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "669b619c17746b01",
+   "input": "4269b619c17746b01000000000000000",
+   "output": "426ab619c17746b01000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c187fc563c24a39e",
+   "input": "c0187fc563c24a39e000000000000000",
+   "output": "c0197fc563c24a39e000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "40ce8aaf1322d810",
+   "input": "400ce8aaf1322d810000000000000000",
+   "output": "400de8aaf1322d810000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8008b44783880356",
+   "input": "bc001688f071006ac000000000000000",
+   "output": "bc011688f071006ac000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c071a12f792d46ee",
+   "input": "c0071a12f792d46ee000000000000000",
+   "output": "c0081a12f792d46ee000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8002bd30d76f4ad4",
+   "input": "bbfe5e986bb7a56a0000000000000000",
+   "output": "bbff5e986bb7a56a0000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000062091a04c905",
+   "input": "3bfb8824681324140000000000000000",
+   "output": "3bfc8824681324140000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "80027555ae724c7a",
+   "input": "bbfe3aaad739263d0000000000000000",
+   "output": "bbff3aaad739263d0000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "3fdd8cf9040cdff5",
+   "input": "3ffdd8cf9040cdff5000000000000000",
+   "output": "3ffed8cf9040cdff5000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c8e4c3ef870a19fb",
+   "input": "c08e4c3ef870a19fb000000000000000",
+   "output": "c08f4c3ef870a19fb000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "000391ccef5d02a7",
+   "input": "3bfec8e677ae81538000000000000000",
+   "output": "3bffc8e677ae81538000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0002ef9e49270284",
+   "input": "3bfe77cf249381420000000000000000",
+   "output": "3bff77cf249381420000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "55eaa586ad1b8e52",
+   "input": "415eaa586ad1b8e52000000000000000",
+   "output": "415faa586ad1b8e52000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "b5a0f970f79d15ea",
+   "input": "bf5a0f970f79d15ea000000000000000",
+   "output": "bf5b0f970f79d15ea000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "b6e96a204293a658",
+   "input": "bf6e96a204293a658000000000000000",
+   "output": "bf6f96a204293a658000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "e9bf9bb4f8412a8c",
+   "input": "c29bf9bb4f8412a8c000000000000000",
+   "output": "c29cf9bb4f8412a8c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "c0d6df2c257376f8",
+   "input": "c00d6df2c257376f8000000000000000",
+   "output": "c00e6df2c257376f8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "2dd0e0945a8f3c3c",
+   "input": "3edd0e0945a8f3c3c000000000000000",
+   "output": "3ede0e0945a8f3c3c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "403211d24e1fcba9",
+   "input": "4003211d24e1fcba9000000000000000",
+   "output": "4004211d24e1fcba9000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8004358dfa314d13",
+   "input": "bbff0d637e8c5344c000000000000000",
+   "output": "bc000d637e8c5344c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0005cfb393e20ea2",
+   "input": "3bff73ece4f883a88000000000000000",
+   "output": "3c0073ece4f883a88000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "d2a0ca9d20cd80b6",
+   "input": "c12a0ca9d20cd80b6000000000000000",
+   "output": "c12b0ca9d20cd80b6000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8005d670105647f6",
+   "input": "bbff759c041591fd8000000000000000",
+   "output": "bc00759c041591fd8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "00021b9386fd675b",
+   "input": "3bfe0dc9c37eb3ad8000000000000000",
+   "output": "3bff0dc9c37eb3ad8000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "d21ed970af550100",
+   "input": "c121ed970af550100000000000000000",
+   "output": "c122ed970af550100000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "8009e2834ff0be07",
+   "input": "bc003c5069fe17c0e000000000000000",
+   "output": "bc013c5069fe17c0e000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "0b2ed747f024e151",
+   "input": "3cb2ed747f024e151000000000000000",
+   "output": "3cb3ed747f024e151000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "800677f8dcf8847f",
+   "input": "bbff9dfe373e211fc000000000000000",
+   "output": "bc009dfe373e211fc000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "9892d197e28e71bc",
+   "input": "bd892d197e28e71bc000000000000000",
+   "output": "bd8a2d197e28e71bc000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "bf0ba44879f49c0c",
+   "input": "bff0ba44879f49c0c000000000000000",
+   "output": "bff1ba44879f49c0c000000000000000"
+  },
+  {
+   "vi": "double",
+   "double": "416d8437afda7d42",
+   "input": "4016d8437afda7d42000000000000000",
+   "output": "4017d8437afda7d42000000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "3ff0000000000000",
+   "input": "3fff0000000000000000000000000000",
+   "output": "3ff91df46a2529d3915c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4000000000000000",
+   "input": "40000000000000000000000000000000",
+   "output": "3ffa1df46a2529d3915c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "403e000000000000",
+   "input": "4003e000000000000000000000000000",
+   "output": "3ffe0c152382d7365846000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4046800000000000",
+   "input": "40046800000000000000000000000000",
+   "output": "3ffe921fb54442d1846a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "404e000000000000",
+   "input": "4004e000000000000000000000000000",
+   "output": "3fff0c152382d7365846000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4056800000000000",
+   "input": "40056800000000000000000000000000",
+   "output": "3fff921fb54442d1846a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4066800000000000",
+   "input": "40066800000000000000000000000000",
+   "output": "4000921fb54442d1846a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4076800000000000",
+   "input": "40076800000000000000000000000000",
+   "output": "4001921fb54442d1846a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c086800000000000",
+   "input": "c0086800000000000000000000000000",
+   "output": "c002921fb54442d1846a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "3fe0000000000000",
+   "input": "3ffe0000000000000000000000000000",
+   "output": "3ff81df46a2529d3915c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "01a56e1fc2f8f359",
+   "input": "3c1a56e1fc2f8f359000000000000000",
+   "output": "3c147f00f350a8ddd4e0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "7e37e43c8800759c",
+   "input": "43e37e43c8800759c000000000000000",
+   "output": "43ddaafe6d51317bafe0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "400921fb54442d18",
+   "input": "4000921fb54442d18000000000000000",
+   "output": "3ffac12d39c144c9ca36000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "401921fb54442d18",
+   "input": "4001921fb54442d18000000000000000",
+   "output": "3ffbc12d39c144c9ca36000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "3ff921fb54442d18",
+   "input": "3fff921fb54442d18000000000000000",
+   "output": "3ff9c12d39c144c9ca36000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40728fe939df8710",
+   "input": "400728fe939df8710000000000000000",
+   "output": "40014bbef82016978f82000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40792bd34794dfb0",
+   "input": "400792bd34794dfb0000000000000000",
+   "output": "4001c1dd26bdde4eb616000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408c90c085dbf3a0",
+   "input": "4008c90c085dbf3a0000000000000000",
+   "output": "4002fe86c249ac1e81c8000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c082f98cdd7c1a1a",
+   "input": "c0082f98cdd7c1a1a000000000000000",
+   "output": "c002531ef8aebc20f3d4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08b2a179ca330c0",
+   "input": "c008b2a179ca330c0000000000000000",
+   "output": "c002e57cbab42454652e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4084441e6ee720a4",
+   "input": "40084441e6ee720a4000000000000000",
+   "output": "40026a32f359ec59bf20000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c074ddddfd6c595e",
+   "input": "c0074ddddfd6c595e000000000000000",
+   "output": "c00174eec419c8f8e960000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c06fe80497eec914",
+   "input": "c006fe80497eec914000000000000000",
+   "output": "c0011d1e1be1ca5c66ae000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4083adda6955cdaa",
+   "input": "40083adda6955cdaa000000000000000",
+   "output": "40025fb560448b3087b0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c083caa4c8905288",
+   "input": "c0083caa4c8905288000000000000000",
+   "output": "c00261b7ecd1f961c778000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40899ae736afa8d4",
+   "input": "400899ae736afa8d4000000000000000",
+   "output": "4002c99e5aa1cfd68cfa000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c031a937d0aa1f80",
+   "input": "c0031a937d0aa1f80000000000000000",
+   "output": "bffd3ba3fbf21bb61904000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08aca9ac5ec85ec",
+   "input": "c008aca9ac5ec85ec000000000000000",
+   "output": "c002ded2285a4b570e94000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408a1cff749b212a",
+   "input": "4008a1cff749b212a000000000000000",
+   "output": "4002d2b36dc181335184000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40623fe7a5f1e1a8",
+   "input": "400623fe7a5f1e1a8000000000000000",
+   "output": "4000462915da4954561c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08a544939da6880",
+   "input": "c008a544939da6880000000000000000",
+   "output": "c002d68f8c5ec184e0ba000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4085294564c26d18",
+   "input": "40085294564c26d18000000000000000",
+   "output": "40027a3265d79a49ce98000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40812d0a7803d03e",
+   "input": "400812d0a7803d03e000000000000000",
+   "output": "400232f8ab4bb4914fb6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "407e056accd2d934",
+   "input": "4007e056accd2d934000000000000000",
+   "output": "40020c458c135eed937e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4073b0e708fdedf0",
+   "input": "40073b0e708fdedf0000000000000000",
+   "output": "40015febdfb52b6a3672000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408ecb489dbb6bf8",
+   "input": "4008ecb489dbb6bf8000000000000000",
+   "output": "4003132db2eba3c5308c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08e7e57e4d5f707",
+   "input": "c008e7e57e4d5f707000000000000000",
+   "output": "c003107e27522f96b37c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408da6e57ec01e1c",
+   "input": "4008da6e57ec01e1c000000000000000",
+   "output": "400308f8e6e20d74271c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4071d7f04d5a0b08",
+   "input": "40071d7f04d5a0b08000000000000000",
+   "output": "40013ee6fbd2798317b6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07ee1f41059e2ee",
+   "input": "c007ee1f41059e2ee000000000000000",
+   "output": "c00213f84706f350858e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "406c1c6a3821a828",
+   "input": "4006c1c6a3821a828000000000000000",
+   "output": "4000f6678fd93a6a93f6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c074455dde37ea0c",
+   "input": "c0074455dde37ea0c000000000000000",
+   "output": "c0016a4940586414b6c0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4072ca0ea5cde2c4",
+   "input": "40072ca0ea5cde2c4000000000000000",
+   "output": "40014fce2aef094591b4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "407987e8015a1120",
+   "input": "4007987e8015a1120000000000000000",
+   "output": "4001c84ad689d6fde1b4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40483bd0d39f1500",
+   "input": "400483bd0d39f1500000000000000000",
+   "output": "3ffeb11ba8aeae06afa4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c089142fb0509313",
+   "input": "c0089142fb0509313000000000000000",
+   "output": "c002c036ababd8363b1a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c06b03c875c06f24",
+   "input": "c006b03c875c06f24000000000000000",
+   "output": "c000e2d00f9a46dce452000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c078bed98082729a",
+   "input": "c0078bed98082729a000000000000000",
+   "output": "c001ba4184dfd659472e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "407f2d2795ef4d60",
+   "input": "4007f2d2795ef4d60000000000000000",
+   "output": "400216984846faa0351c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408af3a11dab265e",
+   "input": "4008af3a11dab265e000000000000000",
+   "output": "4002e1af5c06224b4488000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40813a73d38fab52",
+   "input": "400813a73d38fab52000000000000000",
+   "output": "400233e85cda0cf9a278000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "404e7bebc09d4f00",
+   "input": "4004e7bebc09d4f00000000000000000",
+   "output": "3fff106881aef9c603ce000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0849d1584c8db15",
+   "input": "c00849d1584c8db15000000000000000",
+   "output": "c0027068f395f26a02c2000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4079f141ef7e7730",
+   "input": "40079f141ef7e7730000000000000000",
+   "output": "4001cfa5b1c217800280000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07d5e29906edd6c",
+   "input": "c007d5e29906edd6c000000000000000",
+   "output": "c002066ef1954da2b000000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408f14bd3bc5d9bc",
+   "input": "4008f14bd3bc5d9bc000000000000000",
+   "output": "400315be1a980d50ab7c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c084717365e1073f",
+   "input": "c0084717365e1073f000000000000000",
+   "output": "c0026d5d2145a24798aa000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408d43cfc4749f10",
+   "input": "4008d43cfc4749f10000000000000000",
+   "output": "40030583789085853f14000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08e4f379327dc3d",
+   "input": "c008e4f379327dc3d000000000000000",
+   "output": "c0030ed90787f85f0802000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40817b5fe59e6fae",
+   "input": "400817b5fe59e6fae000000000000000",
+   "output": "40023870a99a7a27beb0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c073348fe6394f76",
+   "input": "c0073348fe6394f76000000000000000",
+   "output": "c001573da43028d8061c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "406284e041354dc8",
+   "input": "4006284e041354dc8000000000000000",
+   "output": "40004af9bfc0b94653cc000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0650c08c8b820d0",
+   "input": "c00650c08c8b820d0000000000000000",
+   "output": "c0007827df9de1cba5d4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07802af068d8708",
+   "input": "c007802af068d8708000000000000000",
+   "output": "c001ad1e95db69681088000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c05f28510af91a18",
+   "input": "c005f28510af91a18000000000000000",
+   "output": "c000166d0c8d6a0781c2000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4083bcd04ef73b56",
+   "input": "40083bcd04ef73b56000000000000000",
+   "output": "400260c0c0d80450e45a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07269668dad41b4",
+   "input": "c007269668dad41b4000000000000000",
+   "output": "c001490eb43c99fdcfb6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0716223578c14fe",
+   "input": "c00716223578c14fe000000000000000",
+   "output": "c00136ada174f0d53db0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408196f491c2cea6",
+   "input": "4008196f491c2cea6000000000000000",
+   "output": "40023a5d9726fc32612a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08424aa2019fbaa",
+   "input": "c008424aa2019fbaa000000000000000",
+   "output": "c0026800cb1fe8e566d6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c071d3505204e546",
+   "input": "c0071d3505204e546000000000000000",
+   "output": "c0013e94537f3560e7dc000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "404074c92caf5f40",
+   "input": "4004074c92caf5f40000000000000000",
+   "output": "3ffe261ba193cb212ede000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40415a21ab27d3e0",
+   "input": "400415a21ab27d3e0000000000000000",
+   "output": "3ffe361e895794659146000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c084a0b5cf601712",
+   "input": "c0084a0b5cf601712000000000000000",
+   "output": "c00270a9c22b18233142000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408086e2a69e380a",
+   "input": "4008086e2a69e380a000000000000000",
+   "output": "4002275f1bdc4fe32ff6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c035ba6611123cc0",
+   "input": "c0035ba6611123cc0000000000000000",
+   "output": "bffd845424c9f53a4fd0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08988d612f2d2aa",
+   "input": "c008988d612f2d2aa000000000000000",
+   "output": "c002c85b7557ffac5e58000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c074343f69910aa2",
+   "input": "c0074343f69910aa2000000000000000",
+   "output": "c00169174c58833057dc000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08baccfbfddd6f3",
+   "input": "c008baccfbfddd6f3000000000000000",
+   "output": "c002ee9cf782f5cc2688000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c073885634302974",
+   "input": "c0073885634302974000000000000000",
+   "output": "c0015d16e038cf319676000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0881b038ff41122",
+   "input": "c00881b038ff41122000000000000000",
+   "output": "c002aed16b5573d1191c000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07eb4bfe14ec550",
+   "input": "c007eb4bfe14ec550000000000000000",
+   "output": "c002126455002040bb98000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "405bf393ce7573e0",
+   "input": "4005bf393ce7573e0000000000000000",
+   "output": "3ffff38db4ca382e8986000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4077b14e25099ac8",
+   "input": "40077b14e25099ac8000000000000000",
+   "output": "4001a7702d091d9139e6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07905c75dddaeb6",
+   "input": "c007905c75dddaeb6000000000000000",
+   "output": "c001bf352d58bbc14658000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c05245e1c5b3c088",
+   "input": "c005245e1c5b3c088000000000000000",
+   "output": "bfff4693e87e01e740c4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "403a7029875696c0",
+   "input": "4003a7029875696c0000000000000000",
+   "output": "3ffdd881c19881e35f4e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40657667dfb3eec8",
+   "input": "400657667dfb3eec8000000000000000",
+   "output": "40007f94f653129ab7ec000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40896f21ec59efcc",
+   "input": "400896f21ec59efcc000000000000000",
+   "output": "4002c69013c2aa94489a000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c081b6663f56d3e0",
+   "input": "c0081b6663f56d3e0000000000000000",
+   "output": "c0023c8f90610a07d31e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "408115e4fe9b46a6",
+   "input": "4008115e4fe9b46a6000000000000000",
+   "output": "4002315afe3414fcba80000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "405b22b9b469f490",
+   "input": "4005b22b9b469f490000000000000000",
+   "output": "3fffe4f91172b42c9214000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4088a88278912cba",
+   "input": "40088a88278912cba000000000000000",
+   "output": "4002b8b2415eef14f05e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4077238eabe3ba50",
+   "input": "40077238eabe3ba50000000000000000",
+   "output": "40019d8ad516d5a1512e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08f01c4f39eefd1",
+   "input": "c008f01c4f39eefd1000000000000000",
+   "output": "c00315149671601dbf08000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08ba80a50863a1e",
+   "input": "c008ba80a50863a1e000000000000000",
+   "output": "c002ee47b1d12423cdda000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4082923ffceb4894",
+   "input": "40082923ffceb4894000000000000000",
+   "output": "40024be8c54cfaacc40e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0797adb94b1a68c",
+   "input": "c00797adb94b1a68c000000000000000",
+   "output": "c001c761a1e6556c68ba000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "406c8cc61ff845d8",
+   "input": "4006c8cc61ff845d8000000000000000",
+   "output": "4000fe3fa94dcea676e2000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c0892e73d6afc5cd",
+   "input": "c00892e73d6afc5cd000000000000000",
+   "output": "c002c20c1ad4e19a0b2e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "405f13a1b46e8700",
+   "input": "4005f13a1b46e8700000000000000000",
+   "output": "400015b434f5172461ea000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c06656d564b00d78",
+   "input": "c006656d564b00d78000000000000000",
+   "output": "c0008f3ff97ae85b24fa000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c053b3af69f70808",
+   "input": "c0053b3af69f70808000000000000000",
+   "output": "bfff601d9b76bd5ae8b0000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08f087dd1e69655",
+   "input": "c008f087dd1e69655000000000000000",
+   "output": "c0031550a844f951f3fe000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4088bbb422ee23fa",
+   "input": "40088bbb422ee23fa000000000000000",
+   "output": "4002ba094b3e42b07dde000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40857f99fa2f72e4",
+   "input": "400857f99fa2f72e4000000000000000",
+   "output": "400280394f43dfe2e2dc000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "407e4470b57a1be8",
+   "input": "4007e4470b57a1be8000000000000000",
+   "output": "40020e78ba118b56e288000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "406e3f19aa71a060",
+   "input": "4006e3f19aa71a060000000000000000",
+   "output": "40010e49020ddd21d5ac000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c081123c98f60cb4",
+   "input": "c0081123c98f60cb4000000000000000",
+   "output": "c00231199ec133ac7ea4000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c08342f1e653b746",
+   "input": "c008342f1e653b746000000000000000",
+   "output": "c002583eb187eb6cc6bc000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "40851e6bb184e928",
+   "input": "400851e6bb184e928000000000000000",
+   "output": "400279707a4ef9aa4c2e000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c075549f3323e77a",
+   "input": "c0075549f3323e77a000000000000000",
+   "output": "c0017d392bbce59490f6000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c06d13da7c6d8810",
+   "input": "c006d13da7c6d8810000000000000000",
+   "output": "c00103d6e9b9acf97598000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "4087c016794d992c",
+   "input": "40087c016794d992c000000000000000",
+   "output": "4002a8785f372f45a0be000000000000"
+  },
+  {
+   "vi": "deg_to_rad",
+   "double": "c07364638bbb7d2c",
+   "input": "c007364638bbb7d2c000000000000000",
+   "output": "c0015a9468bd2ce66d02000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "3ff0000000000000",
+   "input": "3fff0000000000000000000000000000",
+   "output": "4004ca5dc1a63c1f7b86000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4000000000000000",
+   "input": "40000000000000000000000000000000",
+   "output": "4005ca5dc1a63c1f7b86000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "403e000000000000",
+   "input": "4003e000000000000000000000000000",
+   "output": "4009adb7e58bd85d83ce000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4046800000000000",
+   "input": "40046800000000000000000000000000",
+   "output": "400a4249ec28e24622da000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "404e000000000000",
+   "input": "4004e000000000000000000000000000",
+   "output": "400aadb7e58bd85d83ce000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4056800000000000",
+   "input": "40056800000000000000000000000000",
+   "output": "400b4249ec28e24622da000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4066800000000000",
+   "input": "40066800000000000000000000000000",
+   "output": "400c4249ec28e24622da000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4076800000000000",
+   "input": "40076800000000000000000000000000",
+   "output": "400d4249ec28e24622da000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c086800000000000",
+   "input": "c0086800000000000000000000000000",
+   "output": "c00e4249ec28e24622da000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "3fe0000000000000",
+   "input": "3ffe0000000000000000000000000000",
+   "output": "4003ca5dc1a63c1f7b86000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "01a56e1fc2f8f359",
+   "input": "3c1a56e1fc2f8f359000000000000000",
+   "output": "3c2032f6f0525cd6aee8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "7e37e43c8800759c",
+   "input": "43e37e43c8800759c000000000000000",
+   "output": "43e95638a23f1bc655a8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "400921fb54442d18",
+   "input": "4000921fb54442d18000000000000000",
+   "output": "400667fffffffffffc0c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "401921fb54442d18",
+   "input": "4001921fb54442d18000000000000000",
+   "output": "400767fffffffffffc0c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "3ff921fb54442d18",
+   "input": "3fff921fb54442d18000000000000000",
+   "output": "400567fffffffffffc0c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08830af6e534ac6",
+   "input": "c008830af6e534ac6000000000000000",
+   "output": "c00e5a7faebc2cd2cb54000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c087125d863cb062",
+   "input": "c0087125d863cb062000000000000000",
+   "output": "c00e4a7a738fb16cc3d4000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "406850b26d00bbe0",
+   "input": "4006850b26d00bbe0000000000000000",
+   "output": "400c5c4a3763abb9547a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0841f45f1fb2fd2",
+   "input": "c00841f45f1fb2fd2000000000000000",
+   "output": "c00e203a8dbfc84329f8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c086f80d7004219c",
+   "input": "c0086f80d7004219c000000000000000",
+   "output": "c00e49018c39aba60a96000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c051f36283c57b60",
+   "input": "c0051f36283c57b60000000000000000",
+   "output": "c00b012009f573df88f8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0649ba66168a088",
+   "input": "c00649ba66168a088000000000000000",
+   "output": "c00c27301e63863463ae000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c081eabbd28f5e3c",
+   "input": "c0081eabbd28f5e3c000000000000000",
+   "output": "c00e00a41ed4500b6a50000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c06b14a899a9022c",
+   "input": "c006b14a899a9022c000000000000000",
+   "output": "c00c83e70502886d052e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4085643915a66c96",
+   "input": "40085643915a66c96000000000000000",
+   "output": "400e32691dbf5d417934000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0870e5d33333201",
+   "input": "c00870e5d33333201000000000000000",
+   "output": "c00e4a412332117a5bac000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c083869ee7cd8b4e",
+   "input": "c0083869ee7cd8b4e000000000000000",
+   "output": "c00e17aff7bcdcf52b20000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08d8341dc920048",
+   "input": "c008d8341dc920048000000000000000",
+   "output": "c00ea6bd16b5483f74aa000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08041ce73e4e98a",
+   "input": "c008041ce73e4e98a000000000000000",
+   "output": "c00dd1baf8f82c6a4a8e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c089503cc0a736b6",
+   "input": "c0089503cc0a736b6000000000000000",
+   "output": "c00e6a968fe557597520000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408e4bd70d93c384",
+   "input": "4008e4bd70d93c384000000000000000",
+   "output": "400eb1f639b21db53cbe000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0772e3c33fde3d0",
+   "input": "c00772e3c33fde3d0000000000000000",
+   "output": "c00d4c09a84e5f65cf36000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408e902ab8329ed4",
+   "input": "4008e902ab8329ed4000000000000000",
+   "output": "400eb5c8ef5cc2c5466a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08728fc9cbf37e6",
+   "input": "c008728fc9cbf37e6000000000000000",
+   "output": "c00e4bbe7ac91c0f377e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408940002d79bd80",
+   "input": "4008940002d79bd80000000000000000",
+   "output": "400e69adfd588f1610b0000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4029d0631bdcfb80",
+   "input": "40029d0631bdcfb80000000000000000",
+   "output": "400871c22c55c30c1f9c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4077d25c47eb8a30",
+   "input": "40077d25c47eb8a30000000000000000",
+   "output": "400d5538944a08c0af10000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "407446f647755450",
+   "input": "4007446f647755450000000000000000",
+   "output": "400d22730dcfd2894528000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c07ca9ffbbce74ac",
+   "input": "c007ca9ffbbce74ac000000000000000",
+   "output": "c00d9a9517b56ad42718000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c080b7243cf4e077",
+   "input": "c0080b7243cf4e077000000000000000",
+   "output": "c00ddedc602253ef951a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40766eb37f43ca24",
+   "input": "400766eb37f43ca24000000000000000",
+   "output": "400d41522287571a7e28000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0870931256fe46f",
+   "input": "c00870931256fe46f000000000000000",
+   "output": "c00e49f70d85c1a3479a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08e6c425042d4f7",
+   "input": "c008e6c425042d4f7000000000000000",
+   "output": "c00eb3c697d8707f4834000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4080f0d6dfc89a52",
+   "input": "40080f0d6dfc89a52000000000000000",
+   "output": "400de5514bafe5489cf4000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4070a142af0e5688",
+   "input": "40070a142af0e5688000000000000000",
+   "output": "400cdc69876c8fe13404000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c07dfc6047255dcc",
+   "input": "c007dfc6047255dcc000000000000000",
+   "output": "c00dad83fce7ffca4f8a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40445759cdb3bd60",
+   "input": "400445759cdb3bd60000000000000000",
+   "output": "400a235dce459b531708000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40899e9d5e51fdfa",
+   "input": "400899e9d5e51fdfa000000000000000",
+   "output": "400e6ef93c590bb527aa000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c07ba2e6554966d4",
+   "input": "c007ba2e6554966d4000000000000000",
+   "output": "c00d8bdc79502096ea96000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08782e4f5203682",
+   "input": "c008782e4f5203682000000000000000",
+   "output": "c00e50c64fa55d8873c4000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c064b0cf4a4efbb4",
+   "input": "c0064b0cf4a4efbb4000000000000000",
+   "output": "c00c285f35e7d8b3696e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c084c75e7a4bc41f",
+   "input": "c0084c75e7a4bc41f000000000000000",
+   "output": "c00e29a2595f52e92388000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0707c8d2d6b1d1c",
+   "input": "c00707c8d2d6b1d1c000000000000000",
+   "output": "c00cd84de4b2633feffc000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08d360dea155b0b",
+   "input": "c008d360dea155b0b000000000000000",
+   "output": "c00ea26b3d04852b345a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40807bdc3c577db4",
+   "input": "400807bdc3c577db4000000000000000",
+   "output": "400dd83a17b0bac085ae000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408327973a905344",
+   "input": "4008327973a905344000000000000000",
+   "output": "400e125ec36ffd51f95a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c06f9676fd83ed48",
+   "input": "c006f9676fd83ed48000000000000000",
+   "output": "c00cc476137dd686f9b2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c06e9e042114773c",
+   "input": "c006e9e042114773c000000000000000",
+   "output": "c00cb68f4f9d8b315b52000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c07e4fe3decdbb4e",
+   "input": "c007e4fe3decdbb4e000000000000000",
+   "output": "c00db2303d026dc82f00000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408c5e158c546fbe",
+   "input": "4008c5e158c546fbe000000000000000",
+   "output": "400e9655b181e7a72a64000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40879bd45a30b618",
+   "input": "400879bd45a30b618000000000000000",
+   "output": "400e522b7b0a7cc4ba9e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40744ca1235b5ff8",
+   "input": "400744ca1235b5ff8000000000000000",
+   "output": "400d22c43bd5fa13e9a8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08450c126a3794b",
+   "input": "c008450c126a3794b000000000000000",
+   "output": "c00e22ff521af2098324000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0847a2bf656a4be",
+   "input": "c00847a2bf656a4be000000000000000",
+   "output": "c00e25509430b564ae70000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4080b4d5e4165784",
+   "input": "40080b4d5e4165784000000000000000",
+   "output": "400dde9a4fef244c6c86000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08363edd8a5306c",
+   "input": "c008363edd8a5306c000000000000000",
+   "output": "c00e15bf0bef6738083c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4077917314fd77f0",
+   "input": "40077917314fd77f0000000000000000",
+   "output": "400d5196cc728da8bcd8000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c063bd9dd63b1b44",
+   "input": "c0063bd9dd63b1b44000000000000000",
+   "output": "c00c1ac3b993113fd422000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08d4f223d43c82b",
+   "input": "c008d4f223d43c82b000000000000000",
+   "output": "c00ea3d27965e44239ca000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c082e53adea531b1",
+   "input": "c0082e53adea531b1000000000000000",
+   "output": "c00e0ea8371e6717ea6a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4089d579e5255744",
+   "input": "40089d579e5255744000000000000000",
+   "output": "400e720b115fa3858fda000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0763452ce84bd56",
+   "input": "c00763452ce84bd56000000000000000",
+   "output": "c00d3e0def9b609ab8b2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4075d4802b934734",
+   "input": "40075d4802b934734000000000000000",
+   "output": "400d38b1601f36f2bbf2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408059fd3f6067fa",
+   "input": "4008059fd3f6067fa000000000000000",
+   "output": "400dd46fc22d89e23f50000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0695adef36da6f0",
+   "input": "c00695adef36da6f0000000000000000",
+   "output": "c00c6b2ee083cc90083a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "bffbfa3e23f25c00",
+   "input": "bfffbfa3e23f25c00000000000000000",
+   "output": "c00590bf91f5b2b8fe82000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408682db91c9f702",
+   "input": "4008682db91c9f702000000000000000",
+   "output": "400e4272db1ee7b8123a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "407c60880fea1e9c",
+   "input": "4007c60880fea1e9c000000000000000",
+   "output": "400d9678bfa8d3c93a78000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4044f4375bc1a120",
+   "input": "40044f4375bc1a120000000000000000",
+   "output": "400a2c24bcdfee1bef5a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "405654c80ae89bf0",
+   "input": "4005654c80ae89bf0000000000000000",
+   "output": "400b3fdedca4d930531e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c059e0ca64f89ae8",
+   "input": "c0059e0ca64f89ae8000000000000000",
+   "output": "c00b72ad22ab8f057308000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0625e369505dec8",
+   "input": "c00625e369505dec8000000000000000",
+   "output": "c00c071a3e2b298e46ee000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "407560faaac4df18",
+   "input": "4007560faaac4df18000000000000000",
+   "output": "400d323aa6e4991a5796000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c080062b4a2ce5aa",
+   "input": "c0080062b4a2ce5aa000000000000000",
+   "output": "c00dcb0e7cf7cab9a250000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4086d80aa162a2ec",
+   "input": "40086d80aa162a2ec000000000000000",
+   "output": "400e47370642648288bc000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c079b485dcf19690",
+   "input": "c0079b485dcf19690000000000000000",
+   "output": "c00d70330c1d9bf7cae6000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c080cace29f7e22b",
+   "input": "c0080cace29f7e22b000000000000000",
+   "output": "c00de10fb37c79a9a2ae000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408cfafd4ae2bc02",
+   "input": "4008cfafd4ae2bc02000000000000000",
+   "output": "400e9f1d321042e688ec000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08e4e3a18a8ff7a",
+   "input": "c008e4e3a18a8ff7a000000000000000",
+   "output": "c00eb2186a3f0796417e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c06738f3a18480b0",
+   "input": "c006738f3a18480b0000000000000000",
+   "output": "c00c4ca32903e6528ba6000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "405a49091e4554a0",
+   "input": "4005a49091e4554a0000000000000000",
+   "output": "400b788255d4cb855c70000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c05e12a01c6755b0",
+   "input": "c005e12a01c6755b0000000000000000",
+   "output": "c00baec2afb468511cf2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4084981418548ba0",
+   "input": "40084981418548ba0000000000000000",
+   "output": "400e26fcf636d5907c6a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4075b0d0c8a74504",
+   "input": "40075b0d0c8a74504000000000000000",
+   "output": "400d36b23959ba680a0c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40210c8ff8d32940",
+   "input": "400210c8ff8d32940000000000000000",
+   "output": "4007e86b80901dd7f850000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08f07150eaf62c4",
+   "input": "c008f07150eaf62c4000000000000000",
+   "output": "c00ebc7045bb46ece860000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "408e4a66e7ee459a",
+   "input": "4008e4a66e7ee459a000000000000000",
+   "output": "400eb1e1a060abd69c92000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c070d09fd8770ac8",
+   "input": "c0070d09fd8770ac8000000000000000",
+   "output": "c00ce1b667b8a5957ae2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c07185ac164ace16",
+   "input": "c007185ac164ace16000000000000000",
+   "output": "c00cf5f90b08d75c10d6000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08186924df86ac2",
+   "input": "c008186924df86ac2000000000000000",
+   "output": "c00df612ce47a6f96bee000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c082f8c887e6b72f",
+   "input": "c0082f8c887e6b72f000000000000000",
+   "output": "c00e0fc04beee8bd5fcc000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c088d5fc7389fdba",
+   "input": "c0088d5fc7389fdba000000000000000",
+   "output": "c00e63bf7166f61897a6000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0870a2a33e35140",
+   "input": "c00870a2a33e35140000000000000000",
+   "output": "c00e4a04fcfe4ad52238000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40758ff76db425d4",
+   "input": "400758ff76db425d4000000000000000",
+   "output": "400d34dbb23588d54e6c000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c079776a390404a6",
+   "input": "c0079776a390404a6000000000000000",
+   "output": "c00d6cc7bd79432e128a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4035b4a87fbad7e0",
+   "input": "40035b4a87fbad7e0000000000000000",
+   "output": "400936e944082f9d459e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4073129d6ddc5d2c",
+   "input": "40073129d6ddc5d2c000000000000000",
+   "output": "400d11324eb94322e256000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c08abe54078e25de",
+   "input": "c008abe54078e25de000000000000000",
+   "output": "c00e7f126da730d3bd1e000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4080403360381c14",
+   "input": "40080403360381c14000000000000000",
+   "output": "400dd18cf87c28484550000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0831c179aea4024",
+   "input": "c00831c179aea4024000000000000000",
+   "output": "c00e11ba0f2286ef0f58000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40830d6ff2a20916",
+   "input": "400830d6ff2a20916000000000000000",
+   "output": "400e10e8249a0cf901ae000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "40883e26a15de216",
+   "input": "400883e26a15de216000000000000000",
+   "output": "400e5b40903a9d9eb97a000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c05879d363d9fee8",
+   "input": "c005879d363d9fee8000000000000000",
+   "output": "c00b5e9757b1632936f2000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "c0768fa918564bbe",
+   "input": "c00768fa918564bbe000000000000000",
+   "output": "c00d432a3e3769526188000000000000"
+  },
+  {
+   "vi": "rad_to_deg",
+   "double": "4027bec5012d7580",
+   "input": "40027bec5012d7580000000000000000",
+   "output": "4008541ff5bf5477f39e000000000000"
+  }
+ ]
+}
