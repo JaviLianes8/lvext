@@ -6,6 +6,7 @@ from enum import Enum
 from fractions import Fraction
 
 from ._errors import LvextError
+from ._text import short
 
 
 class Rounding(str, Enum):
@@ -83,4 +84,4 @@ def as_rounding(value: Rounding | str) -> Rounding:
         return Rounding(value)
     except ValueError:
         names = ", ".join(mode.value for mode in Rounding)
-        raise LvextError(f"rounding must be one of {names}, got {value!r}") from None
+        raise LvextError(f"rounding must be one of {names}, got {short(value)}") from None

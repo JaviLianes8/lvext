@@ -13,7 +13,8 @@ from ._limits import (
     EXT80_MIN_SUBNORMAL,
 )
 from ._rounding import Rounding
-from ._value import ByteOrder, Ext80, Narrowed
+from ._text import ByteOrder
+from ._value import Ext80, Narrowed
 
 __version__ = "0.2.0"
 

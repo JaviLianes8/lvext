@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from ._bits import Bytes
 from ._errors import LvextError
-from ._value import ByteOrder, Bytes, Ext80, check_order
+from ._text import ByteOrder, check_order
+from ._value import Ext80
 
 _LOW80 = (1 << 80) - 1
 

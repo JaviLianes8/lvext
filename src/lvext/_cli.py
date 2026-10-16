@@ -16,25 +16,27 @@ from . import __version__
 from ._codec import double_bits
 from ._errors import LvextError
 from ._rounding import Rounding
-from ._value import ByteOrder, Ext80, check_order, clean_hex
+from ._text import ByteOrder, check_order, clean_hex, parse_hex, short
+from ._value import Ext80
 
 _NEGATIVE = re.compile(r"-(?:[0-9.]|inf|nan|snan)", re.IGNORECASE)
 
-_EPILOG = """\
-examples:
+_EPILOG = """examples:
   lvext encode 1                         -> 3fff8000000000000000
   lvext encode -2.5                      -> c000a000000000000000
   lvext encode 1/3 --rounding toward-zero
   lvext encode 1 --byteorder little      -> 0000000000000080ff3f
+  lvext encode 0.1 --flattened           -> 3ffb999999999999999a000000000000
   lvext encode 1 --width 16              -> 0000000000003fff8000000000000000
-  lvext encode -1/3                      -> bffdaaaaaaaaaaaaaaab
   lvext encode -inf                      -> ffff8000000000000000
   lvext decode 3ffd8000000000000000      -> exact 0.25, float 0.25
+  lvext decode 3fff0000000000000000000000000000 --flattened
   lvext decode "4000 c90f daa2 2168 c235" --json
 
 VALUE is a decimal (2.5, 1e-4000), a fraction (1/3), inf, nan, snan or -0.
-HEX is 20 hex digits, or 32 for a 16-byte container whose 6 most significant
-bytes are padding; whitespace, underscores and a 0x prefix are ignored.
+HEX is 20 hex digits; 32 with --flattened for LabVIEW's flattened EXT (IEEE
+binary128 layout), or 32 without it for a 16-byte container whose 6 most
+significant bytes are padding. Whitespace, underscores and 0x are ignored.
 """
 
 
@@ -51,30 +53,31 @@ def _parse_value(text: str) -> Decimal | Fraction:
     try:
         return Fraction(cleaned) if "/" in cleaned else Decimal(cleaned)
     except (InvalidOperation, ValueError, ZeroDivisionError):
-        raise LvextError(f"not a number, or beyond the decimal range: {text!r}") from None
+        raise LvextError(f"not a number, or beyond the decimal range: {short(text)}") from None
 
 
-def _parse_hex(text: str, byteorder: ByteOrder) -> Ext80:
-    cleaned = clean_hex(text)
-    if len(cleaned) == 32:
-        try:
-            bits = int.from_bytes(bytes.fromhex(cleaned), byteorder)
-        except ValueError:
-            raise LvextError(f"not a hex string: {text!r}") from None
+def _parse_hex(text: str, byteorder: ByteOrder, args: argparse.Namespace) -> Ext80:
+    if args.flattened:
+        return Ext80.from_flattened(parse_hex(text, 32), byteorder, args.rounding)
+    digits = len(clean_hex(text))
+    if digits == 32:
+        bits = int.from_bytes(parse_hex(text, 32), byteorder)
         return Ext80.from_int(bits & ((1 << 80) - 1))
-    if len(cleaned) != 20:
-        raise LvextError(f"expected 20 or 32 hex digits, got {len(cleaned)}")
-    return Ext80.from_hex(cleaned, byteorder)
+    if digits != 20:
+        raise LvextError(f"expected 20 or 32 hex digits, got {digits}")
+    return Ext80.from_hex(text, byteorder)
 
 
 def _encode(args: argparse.Namespace) -> str:
     order = check_order(args.byteorder)
     value = Ext80.from_number(_parse_value(args.value), args.rounding)
-    return value.to_int().to_bytes(args.width, order).hex()
+    if args.flattened:
+        return value.to_flattened(order).hex()
+    return value.to_int().to_bytes(args.width or 10, order).hex()
 
 
 def _decode(args: argparse.Namespace) -> str:
-    value = _parse_hex(args.hex, check_order(args.byteorder))
+    value = _parse_hex(args.hex, check_order(args.byteorder), args)
     kind = value.kind
     exact = str(value.to_decimal()) if kind.is_valid else None
     narrowed = value.narrow(args.rounding)
@@ -87,6 +90,7 @@ def _decode(args: argparse.Namespace) -> str:
         "float": _float_text(narrowed.value),
         "float_hex": f"{double_bits(narrowed.value):016x}",
         "float_exact": narrowed.exact,
+        "flattened": value.to_flattened().hex() if kind.is_valid else None,
     }
     if args.json:
         return json.dumps(report)
@@ -128,14 +132,19 @@ def _build_parser() -> _Parser:
     enc.formatter_class = argparse.RawDescriptionHelpFormatter
     enc.add_argument("value", metavar="VALUE", help="decimal, fraction, inf, nan, snan or -0")
     _add_byteorder(enc)
-    enc.add_argument("--width", type=int, choices=[10, 16], default=10, help="output bytes")
+    layout = enc.add_mutually_exclusive_group()
+    layout.add_argument("--width", type=int, choices=[10, 16], help="output bytes (default 10)")
+    layout.add_argument("--flattened", action="store_true", help="LabVIEW's 16-byte flattened EXT")
     enc.add_argument("--rounding", choices=modes, default=modes[0], help="to 64 mantissa bits")
     enc.set_defaults(run=_encode)
     dec = commands.add_parser("decode", help="80-bit hex to exact value and float", epilog=_EPILOG)
     dec.formatter_class = argparse.RawDescriptionHelpFormatter
     dec.add_argument("hex", metavar="HEX", help="20 hex digits (or 32 for a 16-byte container)")
     _add_byteorder(dec)
-    dec.add_argument("--rounding", choices=modes, default=modes[0], help="to float64")
+    dec.add_argument(
+        "--rounding", choices=modes, default=modes[0], help="to float64 (and to 64 bits)"
+    )
+    dec.add_argument("--flattened", action="store_true", help="HEX is LabVIEW's flattened EXT")
     dec.add_argument("--json", action="store_true", help="print one JSON object")
     dec.set_defaults(run=_decode)
     return parser
