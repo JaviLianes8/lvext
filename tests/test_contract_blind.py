@@ -150,3 +150,29 @@ def test_python_m_lvext_returns_the_exit_status() -> None:
         check=False,
     )
     assert (good.returncode, good.stdout) == (0, "3fff8000000000000000\n")
+
+
+@pytest.mark.parametrize("name", ["FLOOR", "Floor", " floor", "floor\n", "toward_zero"])
+def test_rounding_names_are_exact(name: str) -> None:
+    with pytest.raises(LvextError, match="rounding"):
+        Ext80.from_fraction(1, name)  # type: ignore[arg-type]
+
+
+class _LooksLikeFloor:
+    def __str__(self) -> str:
+        return "floor"
+
+
+def test_rounding_is_not_taken_from_str_of_an_object() -> None:
+    with pytest.raises(LvextError, match="rounding"):
+        Ext80.from_fraction(1, _LooksLikeFloor())  # type: ignore[arg-type]
+
+
+class _InterruptingHash:
+    def __hash__(self) -> int:
+        raise KeyboardInterrupt
+
+
+def test_an_interrupt_inside_the_rounding_lookup_is_not_swallowed() -> None:
+    with pytest.raises(KeyboardInterrupt):
+        Ext80.from_fraction(1, _InterruptingHash())  # type: ignore[arg-type]
