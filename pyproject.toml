@@ -4,38 +4,68 @@ build-backend = "hatchling.build"
 
 [project]
 name = "lvext"
-version = "0.2.0"
-description = "Exact pure-Python codec for x87 80-bit extended-precision floats"
+version = "1.0.0"
+description = "Exact pure-Python codec for x87 80-bit extended floats and LabVIEW's flattened EXT"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Javier Lianes", email = "javier@lianes8studio.com" }]
-keywords = ["x87", "extended-precision", "float80", "long-double", "labview"]
+keywords = [
+    "x87",
+    "extended-precision",
+    "float80",
+    "long-double",
+    "binary128",
+    "labview",
+    "flatten",
+    "ext",
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
     "Typing :: Typed",
 ]
 dependencies = []
-
-[project.optional-dependencies]
-dev = ["ruff", "mypy", "pytest", "build", "twine"]
 
 [project.scripts]
 lvext = "lvext._cli:main"
 
 [project.urls]
 Homepage = "https://lianes8studio.com"
-Repository = "https://github.com/JaviLianes8/lvext"
+Source = "https://github.com/JaviLianes8/lvext"
 Issues = "https://github.com/JaviLianes8/lvext/issues"
 Changelog = "https://github.com/JaviLianes8/lvext/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/JaviLianes8/lvext/blob/main/GUIDE.md"
 LinkedIn = "https://www.linkedin.com/in/jlianes/"
 Funding = "https://buymeacoffee.com/jlianesglrs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lvext"]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/lvext",
+    "tests",
+    "conftest.py",
+    "README.md",
+    "GUIDE.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+exclude = ["**/__pycache__", "**/*.pyc"]
 
 [tool.ruff]
 line-length = 100
@@ -49,6 +79,6 @@ python_version = "3.10"
 strict = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "src"]
 pythonpath = ["src"]
-addopts = "-q"
+addopts = "-q --doctest-modules"

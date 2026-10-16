@@ -1,4 +1,12 @@
-"""Named limits of the 80-bit extended format, as exact Ext80 values."""
+"""Named limits of the 80-bit extended format, as exact Ext80 values.
+
+>>> EXT80_MAX.hex(), EXT80_MIN_NORMAL.hex(), EXT80_MIN_SUBNORMAL.hex()
+('7ffeffffffffffffffff', '00018000000000000000', '00000000000000000001')
+>>> EXT80_EPSILON.to_fraction() == Fraction(1, 2**63)
+True
+>>> EXT80_INDEFINITE.kind.value, EXT80_INDEFINITE.negative
+('quiet-nan', True)
+"""
 
 from __future__ import annotations
 

@@ -16,7 +16,7 @@ from ._rounding import Rounding
 from ._text import ByteOrder
 from ._value import Ext80, Narrowed
 
-__version__ = "0.2.0"
+__version__ = "1.0.0"
 
 __all__ = [
     "EXT80_EPSILON",

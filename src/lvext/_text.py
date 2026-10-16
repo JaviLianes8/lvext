@@ -1,4 +1,10 @@
-"""Small argument checks shared by the codec, the value type and the command line."""
+"""Small argument checks shared by the codec, the value type and the command line.
+
+``ByteOrder`` is the type of every ``byteorder`` argument: ``"big"`` or ``"little"``.
+
+>>> Ext80.from_float(1.0).to_bytes("little") == Ext80.from_float(1.0).to_bytes()[::-1]
+True
+"""
 
 from __future__ import annotations
 

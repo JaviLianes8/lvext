@@ -11,12 +11,22 @@ _LOW80 = (1 << 80) - 1
 
 
 def pack_ext(value: float, byteorder: ByteOrder = "big") -> bytes:
-    """Pack a float exactly into the 10-byte extended form (big-endian by default)."""
+    """Pack a float exactly into the 10-byte extended form (big-endian by default).
+
+    An int is taken at its exact value, as ``Ext80.from_float`` does.
+
+    >>> pack_ext(1.0).hex()
+    '3fff8000000000000000'
+    """
     return Ext80.from_float(value).to_bytes(byteorder)
 
 
 def unpack_ext(data: Bytes, byteorder: ByteOrder = "big") -> float:
-    """Unpack 10 bytes into the nearest float, rounding once as x87 FSTP does."""
+    """Unpack 10 bytes into the nearest float, rounding once as x87 FSTP does.
+
+    >>> unpack_ext(bytes.fromhex("0000000000000080ff3f"), "little")
+    1.0
+    """
     return Ext80.from_bytes(data, byteorder).to_float()
 
 
@@ -24,13 +34,20 @@ def pack_ext128(value: float, byteorder: ByteOrder = "big") -> bytes:
     """Pack a float into a 16-byte container: the 80-bit value zero-padded at the top.
 
     With ``"little"`` this is the in-memory layout x86-64 compilers use for a 16-byte
-    ``long double``. It is not a documented LabVIEW flatten format.
+    ``long double``. It is not LabVIEW's flattened form; see ``Ext80.to_flattened``.
+
+    >>> pack_ext128(1.0).hex()
+    '0000000000003fff8000000000000000'
     """
     return Ext80.from_float(value).to_int().to_bytes(16, check_order(byteorder))
 
 
 def unpack_ext128(data: Bytes, byteorder: ByteOrder = "big") -> float:
-    """Unpack a 16-byte container, ignoring the six padding bytes."""
+    """Unpack a 16-byte container, ignoring the six padding bytes.
+
+    >>> unpack_ext128(bytes.fromhex("ffffffffffff3fff8000000000000000"))
+    1.0
+    """
     raw = bytes(data)
     if len(raw) != 16:
         raise LvextError(f"padded extended value must be 16 bytes, got {len(raw)}")

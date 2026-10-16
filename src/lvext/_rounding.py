@@ -11,7 +11,15 @@ from ._text import short
 
 
 class Rounding(str, Enum):
-    """The four x87 rounding control modes, also the four IEEE 754 binary modes."""
+    """The four x87 rounding control modes, also the four IEEE 754 binary modes.
+
+    Wherever a mode is taken, its string value works too.
+
+    >>> Ext80.from_fraction(Fraction(-1, 3), Rounding.FLOOR).hex()
+    'bffdaaaaaaaaaaaaaaab'
+    >>> Rounding("toward-zero") is Rounding.TOWARD_ZERO
+    True
+    """
 
     NEAREST_EVEN = "nearest-even"
     """Round to nearest, ties to even. The x87 and IEEE 754 default."""
