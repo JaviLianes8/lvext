@@ -29,7 +29,8 @@ change in a new major version. Stable: `Ext80` and its methods, `ExtKind`, `Roun
 - `Ext80.from_float`, and so `pack_ext` and `pack_ext128`, take an int at its exact
   value, rounding to nearest-even only beyond 64 significant bits. 0.2.0 converted the
   int to a float first (`2**64 - 1` became `2**64`) and raised `OverflowError` for an
-  int beyond the float range; that now gives infinity.
+  int beyond the float range; such an int now encodes like any other, and one beyond
+  the extended range gives infinity.
 - An unknown rounding name raises `LvextError` whatever the value. 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
 - Error messages quote at most 40 characters of the offending value.

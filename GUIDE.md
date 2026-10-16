@@ -195,7 +195,8 @@ Messages quote at most 40 characters of the offending value.
 - `Ext80.from_float` (and so `pack_ext` and `pack_ext128`) takes an int at its exact
   value, rounding to nearest-even only beyond 64 significant bits; 0.2.0 converted it
   to a float first, so `2**64 - 1` became `2**64`, and an int beyond the float range
-  raised `OverflowError`. It now gives infinity.
+  raised `OverflowError`. Such an int now encodes like any other (`10**400` is in
+  range), and one beyond the extended range gives infinity.
 - An unknown rounding name raises `LvextError` for every value; 0.2.0 ignored it when
   the value was a zero, an infinity, a NaN or (in `from_number`) a float.
 - Error messages quote at most 40 characters of the input.
