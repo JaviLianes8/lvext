@@ -143,3 +143,44 @@ def test_exponent_beyond_the_decimal_range_is_reported(capsys: Capture) -> None:
     code, _, err = _run(capsys, "encode", "1e999999999999999999999")
     assert code == 1
     assert "beyond the decimal range" in err
+
+
+def test_encode_flattened(capsys: Capture) -> None:
+    assert _run(capsys, "encode", "1", "--flattened")[1] == "3fff" + "0" * 28 + "\n"
+    assert (
+        _run(capsys, "encode", "0.1", "--flattened")[1] == "3ffb999999999999999a" + "0" * 12 + "\n"
+    )
+    little = _run(capsys, "encode", "-2.5", "--flattened", "--byteorder", "little")[1]
+    assert little == bytes.fromhex("c0004" + "0" * 27)[::-1].hex() + "\n"
+
+
+def test_flattened_and_width_cannot_be_combined(capsys: Capture) -> None:
+    with pytest.raises(SystemExit) as caught:
+        main(["encode", "1", "--flattened", "--width", "16"])
+    out, err = capsys.readouterr()
+    assert (caught.value.code, out) == (1, "")
+    assert "not allowed with argument" in err
+
+
+def test_decode_flattened_rounds_to_64_bits(capsys: Capture) -> None:
+    tie = "3fff" + f"{1 << 48:028x}"
+    report = json.loads(_run(capsys, "decode", tie, "--flattened", "--json")[1])
+    assert report["mantissa"] == "0x8000000000000000"
+    assert report["flattened"] == "3fff" + "0" * 28
+    report = json.loads(
+        _run(capsys, "decode", tie, "--flattened", "--rounding", "ceiling", "--json")[1]
+    )
+    assert report["mantissa"] == "0x8000000000000001"
+
+
+def test_decode_flattened_needs_32_digits(capsys: Capture) -> None:
+    code, _, err = _run(capsys, "decode", "3fff8000000000000000", "--flattened")
+    assert code == 1
+    assert err == "lvext: error: expected 32 hex digits, got 20\n"
+
+
+def test_decode_reports_the_flattened_form(capsys: Capture) -> None:
+    out = _run(capsys, "decode", "3ffbcccccccccccccccd")[1]
+    assert out.endswith("flattened: 3ffb999999999999999a000000000000\n")
+    out = _run(capsys, "decode", "3fff0000000000000000")[1]
+    assert out.endswith("flattened: none (rejected by the 80387 and later)\n")
