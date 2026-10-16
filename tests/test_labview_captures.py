@@ -94,8 +94,9 @@ def test_labview_writes_bits_lvext_refuses_or_canonicalizes() -> None:
     """The library call doubles by adding 1 to the exponent field, so a zero comes back
     as an unnormal and an infinity or NaN wraps into a pseudo-denormal of the other sign.
     LabVIEW flattens the unnormal as if its integer bit were set (the smallest normal),
-    and a pseudo-denormal by shifting all 64 mantissa bits under exponent 0. lvext refuses the first (it has no
-    value) and writes the second with its value, under exponent 1.
+    and a pseudo-denormal by shifting all 64 mantissa bits under exponent 0. lvext
+    refuses the first (it has no value) and writes the second with its value, under
+    exponent 1.
     """
     zero = next(r for r in RECORDS if r["double"] == "0000000000000000")
     assert zero["output"] == "0001" + "00" * 14
