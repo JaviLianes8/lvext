@@ -10,7 +10,7 @@ from . import _codec, _decimal
 from ._bits import Encoding80
 from ._errors import InvalidEncodingError, NotFiniteError, require
 from ._kind import EXP_MAX, INT_BIT, ExtKind
-from ._rounding import Rounding, as_rounding
+from ._rounding import Rounding, RoundingMode, as_rounding
 
 Number = int | float | Fraction | Decimal
 
@@ -57,7 +57,7 @@ class Ext80(Encoding80):
 
     @classmethod
     def from_fraction(
-        cls, value: Fraction | int, rounding: Rounding = Rounding.NEAREST_EVEN
+        cls, value: Fraction | int, rounding: RoundingMode = Rounding.NEAREST_EVEN
     ) -> Ext80:
         """Round an exact rational once to the nearest encoding in ``rounding`` mode.
 
@@ -74,7 +74,7 @@ class Ext80(Encoding80):
         return cls(negative, exponent, mantissa)
 
     @classmethod
-    def from_decimal(cls, value: Decimal, rounding: Rounding = Rounding.NEAREST_EVEN) -> Ext80:
+    def from_decimal(cls, value: Decimal, rounding: RoundingMode = Rounding.NEAREST_EVEN) -> Ext80:
         """Round a Decimal once. Signed zero, infinities, NaN and sNaN are kept.
 
         >>> Ext80.from_decimal(Decimal("0.1")).hex()
@@ -92,7 +92,7 @@ class Ext80(Encoding80):
         return cls.from_fraction(_decimal.bounded(value), mode)
 
     @classmethod
-    def from_number(cls, value: Number, rounding: Rounding = Rounding.NEAREST_EVEN) -> Ext80:
+    def from_number(cls, value: Number, rounding: RoundingMode = Rounding.NEAREST_EVEN) -> Ext80:
         """Encode an int, float, Fraction or Decimal; floats are always exact.
 
         >>> Ext80.from_number(Fraction(1, 4)) == Ext80.from_float(0.25)
@@ -131,7 +131,7 @@ class Ext80(Encoding80):
             return _decimal.special_decimal(self.negative, kind, self.mantissa)
         return _decimal.exact_decimal(self.negative, abs(self.to_fraction()))
 
-    def narrow(self, rounding: Rounding = Rounding.NEAREST_EVEN) -> Narrowed:
+    def narrow(self, rounding: RoundingMode = Rounding.NEAREST_EVEN) -> Narrowed:
         """Round to a float in ``rounding`` mode and report whether it is exact.
 
         >>> Ext80.from_float(0.5).narrow()
@@ -142,7 +142,7 @@ class Ext80(Encoding80):
         )
         return Narrowed(value, exact)
 
-    def to_float(self, rounding: Rounding = Rounding.NEAREST_EVEN) -> float:
+    def to_float(self, rounding: RoundingMode = Rounding.NEAREST_EVEN) -> float:
         """Round to the nearest float (or as ``rounding`` says), as x87 FSTP does.
 
         >>> Ext80.from_fraction(Fraction(1, 3)).to_float(Rounding.CEILING)

@@ -8,7 +8,7 @@ from typing import TypeVar
 from . import _codec, _flat
 from ._errors import LvextError, require
 from ._kind import EXP_MAX, ExtKind, classify
-from ._rounding import Rounding, as_rounding
+from ._rounding import Rounding, RoundingMode, as_rounding
 from ._text import ByteOrder, check_order, parse_hex, short
 
 Bytes = bytes | bytearray | memoryview
@@ -102,7 +102,7 @@ class Encoding80:
         cls: type[_T],
         data: Bytes,
         byteorder: ByteOrder = "big",
-        rounding: Rounding = Rounding.NEAREST_EVEN,
+        rounding: RoundingMode = Rounding.NEAREST_EVEN,
     ) -> _T:
         """Read LabVIEW's 16-byte flattened EXT, rounding once to 64 bits if needed.
 

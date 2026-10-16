@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from enum import Enum
 from fractions import Fraction
+from typing import Literal
 
 from ._errors import LvextError
 from ._text import short
@@ -20,6 +21,11 @@ class Rounding(str, Enum):
     """Round toward plus infinity."""
     TOWARD_ZERO = "toward-zero"
     """Truncate toward zero."""
+
+
+RoundingName = Literal["nearest-even", "floor", "ceiling", "toward-zero"]
+RoundingMode = Rounding | RoundingName
+"""A Rounding member or its string value; both are accepted wherever a mode is."""
 
 
 def _round_quotient(num: int, den: int, negative: bool, mode: Rounding) -> int:
@@ -78,7 +84,7 @@ def overflow_saturates(negative: bool, mode: Rounding) -> bool:
     return not negative
 
 
-def as_rounding(value: Rounding | str) -> Rounding:
+def as_rounding(value: object) -> Rounding:
     """Return the Rounding for a member or its string value, else raise LvextError."""
     try:
         return Rounding(value)

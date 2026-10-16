@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 from fractions import Fraction
+from typing import Any
 
 import pytest
 
@@ -38,15 +39,18 @@ def test_from_float_refuses_other_types(value: object) -> None:
         Ext80.from_float(value)  # type: ignore[arg-type]
 
 
+UP: Any = "up"
+
+
 @pytest.mark.parametrize(
     "call",
     [
-        lambda: Ext80.from_fraction(0, "up"),
-        lambda: Ext80.from_fraction(Fraction(1, 3), "up"),
-        lambda: Ext80.from_decimal(Decimal("0"), "up"),
-        lambda: Ext80.from_decimal(Decimal("NaN"), "up"),
-        lambda: Ext80.from_number(1.5, "up"),
-        lambda: Ext80.from_float(1.0).narrow("up"),
+        lambda: Ext80.from_fraction(0, UP),
+        lambda: Ext80.from_fraction(Fraction(1, 3), UP),
+        lambda: Ext80.from_decimal(Decimal("0"), UP),
+        lambda: Ext80.from_decimal(Decimal("NaN"), UP),
+        lambda: Ext80.from_number(1.5, UP),
+        lambda: Ext80.from_float(1.0).narrow(UP),
     ],
 )
 def test_an_unknown_rounding_is_refused_whatever_the_value(call: object) -> None:
@@ -60,7 +64,7 @@ def test_rounding_members_and_names_are_interchangeable() -> None:
         assert Ext80.from_fraction(third, mode) == Ext80.from_fraction(third, mode.value)
 
 
-HUGE = "z" * 1_000_000
+HUGE: Any = "z" * 1_000_000
 
 
 @pytest.mark.parametrize(
