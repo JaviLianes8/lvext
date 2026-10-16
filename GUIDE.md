@@ -218,7 +218,7 @@ Their messages quote at most 40 characters of the offending value.
   released memoryview anywhere.
 - `canonical()` on a subclass of `Ext80` returns that subclass.
 - The command line exits 1 with one error line when its output cannot be written, and
-  a usage error is one line.
+  a usage error's message is flattened to one line and cut to 160 characters.
 - The `rounding` arguments are typed `RoundingMode` (exported): a member or its name.
 - Public classes report `lvext` as their module, for example `lvext.InvalidEncodingError`
   in a traceback.
