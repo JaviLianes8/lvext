@@ -113,7 +113,7 @@ def test_missing_command_exits_1(cli: Path) -> None:
 
 def test_flattened_round_trip_through_the_cli(cli: Path) -> None:
     flat = _run(cli, "encode", "1/3", "--flattened").stdout.strip()
-    assert flat == "3ffd5555555555555555" + "0" * 12
+    assert flat == "3ffd5555555555555556" + "0" * 12
     report = json.loads(_run(cli, "decode", flat, "--flattened", "--json").stdout)
     assert report["mantissa"] == "0xaaaaaaaaaaaaaaab"
     assert report["flattened"] == flat
